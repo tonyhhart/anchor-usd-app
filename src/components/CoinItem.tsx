@@ -1,27 +1,55 @@
 import * as React from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { Avatar, List, Surface } from 'react-native-paper';
 
 import Metrics from 'constants/Metrics';
-import { CoinResponse } from 'store';
+import { Coin } from 'store';
 import globalStyles from 'styles/globalStyles';
+import { Text } from './Themed';
+import { formatMoney, formatPercentage } from 'services/helpers-service';
+import Colors from 'constants/Colors';
 
-function CoinItem({ item }: { item: CoinResponse }) {
-  const { CoinModel: model } = item;
+function CoinItem({ item }: { item: Coin }) {
+  function leftComponent() {
+    return <Avatar.Image style={globalStyles.avatar} size={40} source={{ uri: item.image_url }} />;
+  }
+
+  function rightComponent() {
+    return (
+      <View style={styles.righComponent}>
+        <Image
+          style={styles.chartImage}
+          source={{
+            uri: `https://images.cryptocompare.com/sparkchart/${item.symbol}/USD/latest.png`,
+          }}
+        />
+
+        <View>
+          <Text style={styles.price}>{formatMoney(item.usd_price)}</Text>
+          <Text
+            style={[
+              styles.percentage,
+              { color: item.usd_change_pct_24_hours > 0 ? Colors.success : Colors.danger },
+            ]}
+          >
+            {item.usd_change_pct_24_hours > 0 ? '▴' : '▾'}
+            {formatPercentage(item.usd_change_pct_24_hours)}
+          </Text>
+        </View>
+      </View>
+    );
+  }
+
   return (
     <Surface style={[globalStyles.card, styles.card]}>
       <List.Item
-        title={model.name}
+        title={item.fullname}
         titleStyle={styles.title}
-        description={model.fullname}
-        left={() => (
-          <Avatar.Image
-            style={globalStyles.avatar}
-            size={48}
-            backgroundColor="transparent"
-            source={{ uri: model.image_url }}
-          />
-        )}
+        description={item.name}
+        descriptionStyle={styles.description}
+        left={leftComponent}
+        descriptionNumberOfLines={1}
+        right={rightComponent}
       />
     </Surface>
   );
@@ -38,6 +66,35 @@ const styles = StyleSheet.create({
   },
   title: {
     marginBottom: Metrics.base / 4,
+    fontWeight: '600',
+    fontSize: Metrics.label,
+  },
+  description: {
+    opacity: 0.8,
+    fontSize: Metrics.small,
+  },
+  righComponent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: 180,
+  },
+  chartImage: {
+    flex: 1,
+    height: '100%',
+    maxWidth: 150 * 0.8,
+    maxHeight: 35 * 0.8,
+    resizeMode: 'contain',
+  },
+  price: {
+    fontWeight: '700',
+    fontSize: Metrics.label - 2,
+    minWidth: 90,
+    textAlign: 'right',
+    marginBottom: 2,
+  },
+  percentage: {
+    fontSize: Metrics.label - 3,
+    textAlign: 'right',
     fontWeight: '500',
   },
 });

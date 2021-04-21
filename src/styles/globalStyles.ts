@@ -34,5 +34,6 @@ export default StyleSheet.create({
   avatar: {
     alignSelf: 'center',
     marginHorizontal: Metrics.base / 3,
+    backgroundColor: 'transparent',
   },
 });

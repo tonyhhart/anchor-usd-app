@@ -4,7 +4,7 @@ import { useDispatch, useSelector, useStore } from 'react-redux';
 
 import CoinItem from 'components/CoinItem';
 import Metrics from 'constants/Metrics';
-import { CoinResponse, listCoinsAsync, selectApiToken, selectCoinState } from 'store';
+import { Coin, listCoinsAsync, selectApiToken, selectCoinState } from 'store';
 
 export default function SettingsScreen() {
   const dispatch = useDispatch();
@@ -15,12 +15,12 @@ export default function SettingsScreen() {
     dispatch(listCoinsAsync(api_token));
   }, []);
 
-  function renderCoinItem({ item }: ListRenderItemInfo<CoinResponse>) {
+  function renderCoinItem({ item }: ListRenderItemInfo<Coin>) {
     return <CoinItem item={item} />;
   }
 
-  function keyExtractor(item: CoinResponse) {
-    return item.CoinModel.id.toString();
+  function keyExtractor(item: Coin) {
+    return item.id.toString();
   }
 
   return (

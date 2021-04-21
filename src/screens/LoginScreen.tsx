@@ -20,8 +20,8 @@ export default function LoginScreen({
   const { loading, error } = useSelector(selectAuth);
 
   const [formValues, setFormValues] = React.useState({
-    email: '',
-    password: '',
+    email: 'tonyzoof@gmail.com',
+    password: '12345678',
   });
 
   function onChange(name: string, value: string) {

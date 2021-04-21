@@ -29,7 +29,7 @@ function ListItem(props: Props) {
         }
         {...props}
       />
-      <Divider style={styles.lastDivider} />
+      <Divider />
     </Surface>
   );
 }
@@ -72,8 +72,5 @@ const styles = StyleSheet.create({
   },
   icon: {
     margin: 0,
-  },
-  lastDivider: {
-    marginBottom: -1,
   },
 });

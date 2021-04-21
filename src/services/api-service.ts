@@ -40,12 +40,12 @@ const api = (token?: string): AxiosInstance => {
 
   apiLocal.interceptors.response.use(
     (response: AxiosResponse) => {
-      if (__DEV__ && API_DEBUG_RESPONSE) jsonConsole('Response', response.data);
+      if (__DEV__ && API_DEBUG_RESPONSE === 'true') jsonConsole('Response', response.data);
 
       return Promise.resolve(response);
     },
     (error: AxiosError) => {
-      if (__DEV__ && API_DEBUG_RESPONSE)
+      if (__DEV__ && API_DEBUG_RESPONSE === 'true')
         jsonConsole('Error:', error.response?.status, error.response?.data);
 
       return Promise.reject(error);

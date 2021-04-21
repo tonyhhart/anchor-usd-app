@@ -42,7 +42,7 @@ export const listCoinsAsync = (api_token?: string) => (dispatch: StoreDispatch, 
 
   api(api_token)
     .get('index')
-    .then(({ data }: AxiosResponse<{ data: CoinResponse[] }>) => {
+    .then(({ data }: AxiosResponse<{ data: Coin[] }>) => {
       dispatch(list_coins_success(data.data));
     })
     .catch((error) => {
@@ -55,7 +55,7 @@ export const selectCoinState = (state: StoreState) => state.coins;
 export default coinsSlice.reducer;
 
 export type CoinsState = {
-  data: CoinResponse[];
+  data: Coin[];
   loading: boolean;
   success: boolean;
   error?: string;
@@ -63,25 +63,24 @@ export type CoinsState = {
 
 export type CoinsReducers = {
   list_coins: (state: CoinsState) => void;
-  list_coins_success: (state: CoinsState, params: { payload: CoinResponse[] }) => void;
+  list_coins_success: (state: CoinsState, params: { payload: Coin[] }) => void;
   list_coins_error: (state: CoinsState, params: { payload: string }) => void;
 };
 
 export type Coin = {
   id: number;
   name: string;
+  coiname: string;
   fullname: string;
-  internal: string;
-  dominant_color: string;
+  symbol: string;
   image: string;
   image_url: string;
-  type: string;
+  usd_price: number;
+  usd_change_pct_day: number;
+  usd_change_pct_24_hours: number;
+  usd_change_pct_hour: number;
   documenttype: string;
   created_at: string;
   updated_at: string;
   deleted_at?: string;
-};
-
-export type CoinResponse = {
-  CoinModel: Coin;
 };
