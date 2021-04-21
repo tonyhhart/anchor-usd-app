@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Button, TextInput, Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { StackScreenProps } from '@react-navigation/stack';
 import Logo from 'components/Logo';
-import Layout from 'constants/Layout';
 import Metrics from 'constants/Metrics';
 import { loginAsync, selectAuth } from 'store';
 import globalStyles from 'styles/globalStyles';

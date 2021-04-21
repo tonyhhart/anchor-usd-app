@@ -70,8 +70,9 @@ export type CoinsReducers = {
 export type Coin = {
   id: number;
   name: string;
-  coiname: string;
+  coinname: string;
   fullname: string;
+  description: string;
   symbol: string;
   image: string;
   image_url: string;

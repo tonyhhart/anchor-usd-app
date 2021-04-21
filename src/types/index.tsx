@@ -3,6 +3,8 @@
  * https://reactnavigation.org/docs/typescript/
  */
 
+import { Coin } from 'store';
+
 export type SettingsItem = {
   icon: string;
   title: string;
@@ -23,6 +25,7 @@ export type PublicStackParamList = {
 
 export type RootStackParamList = {
   Root: undefined;
+  ViewCoin: { coin: Coin };
   NotFound: undefined;
 };
 

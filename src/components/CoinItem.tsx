@@ -9,7 +9,7 @@ import { Text } from './Themed';
 import { formatMoney, formatPercentage } from 'services/helpers-service';
 import Colors from 'constants/Colors';
 
-function CoinItem({ item }: { item: Coin }) {
+function CoinItem({ item, showGraphImage }: { item: Coin; showGraphImage?: boolean }) {
   function leftComponent() {
     return <Avatar.Image style={globalStyles.avatar} size={40} source={{ uri: item.image_url }} />;
   }
@@ -17,12 +17,14 @@ function CoinItem({ item }: { item: Coin }) {
   function rightComponent() {
     return (
       <View style={styles.righComponent}>
-        <Image
-          style={styles.chartImage}
-          source={{
-            uri: `https://images.cryptocompare.com/sparkchart/${item.symbol}/USD/latest.png`,
-          }}
-        />
+        {showGraphImage && (
+          <Image
+            style={styles.chartImage}
+            source={{
+              uri: `https://images.cryptocompare.com/sparkchart/${item.symbol}/USD/latest.png`,
+            }}
+          />
+        )}
 
         <View>
           <Text style={styles.price}>{formatMoney(item.usd_price)}</Text>
@@ -43,7 +45,7 @@ function CoinItem({ item }: { item: Coin }) {
   return (
     <Surface style={[globalStyles.card, styles.card]}>
       <List.Item
-        title={item.fullname}
+        title={item.coinname}
         titleStyle={styles.title}
         description={item.name}
         descriptionStyle={styles.description}
@@ -55,7 +57,9 @@ function CoinItem({ item }: { item: Coin }) {
   );
 }
 
-CoinItem.defaultProps = {};
+CoinItem.defaultProps = {
+  showGraphImage: true,
+};
 
 export default CoinItem;
 
@@ -76,6 +80,7 @@ const styles = StyleSheet.create({
   righComponent: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'flex-end',
     width: 180,
   },
   chartImage: {

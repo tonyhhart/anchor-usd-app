@@ -36,4 +36,21 @@ export default StyleSheet.create({
     marginHorizontal: Metrics.base / 3,
     backgroundColor: 'transparent',
   },
+  content: {
+    padding: Metrics.base,
+  },
+  contentDescription: {
+    fontSize: Metrics.label - 2,
+    opacity: 0.5,
+    letterSpacing: 0.1,
+    lineHeight: 20,
+  },
+  row: {
+    flexDirection: 'row',
+    marginHorizontal: -Metrics.base,
+  },
+  col: {
+    flex: 1,
+    paddingHorizontal: Metrics.base,
+  },
 });

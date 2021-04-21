@@ -11,11 +11,15 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from 'screens/LoginScreen';
 import NotFoundScreen from 'screens/NotFoundScreen';
+import ViewCoinScreen from 'screens/ViewCoinScreen';
 import { selectApiToken } from 'store';
 import { PublicStackParamList, RootStackParamList } from 'types';
 
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
+import Colors from 'constants/Colors';
+
+const headerStyle = {};
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -43,8 +47,25 @@ function RootNavigator() {
   }
 
   return (
-    <RootStack.Navigator screenOptions={{ headerShown: false }}>
-      <RootStack.Screen name="Root" component={BottomTabNavigator} />
+    <RootStack.Navigator>
+      <RootStack.Screen
+        name="Root"
+        component={BottomTabNavigator}
+        options={{
+          headerShown: false,
+          title: 'Explore',
+        }}
+      />
+      <RootStack.Screen
+        name="ViewCoin"
+        component={ViewCoinScreen}
+        options={{
+          headerShown: true,
+          title: '',
+          headerStyle: { backgroundColor: Colors.light.tint },
+          headerTintColor: Colors.white,
+        }}
+      />
       <RootStack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </RootStack.Navigator>
   );
