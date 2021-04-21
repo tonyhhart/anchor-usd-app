@@ -1,0 +1,43 @@
+module.exports = function (api) {
+  if (api) api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: [
+      [
+        'module:react-native-dotenv',
+        {
+          moduleName: '@env',
+          path: '.env',
+          blacklist: null,
+          whitelist: null,
+          safe: false,
+          allowUndefined: false,
+        },
+      ],
+      'react-native-reanimated/plugin',
+      [
+        'module-resolver',
+        {
+          cwd: 'babelrc',
+          root: ['./src'],
+          extensions: [
+            '.ts',
+            '.ios.ts',
+            '.android.ts',
+            '.tsx',
+            '.ios.tsx',
+            '.android.tsx',
+            '.js',
+            '.ios.js',
+            '.android.js',
+          ],
+        },
+      ],
+    ],
+    env: {
+      production: {
+        plugins: ['react-native-paper/babel'],
+      },
+    },
+  };
+};

@@ -1,0 +1,23 @@
+diff --git a/node_modules/redux-storage-engine-reactnativeasyncstorage/build/index.js b/node_modules/redux-storage-engine-reactnativeasyncstorage/build/index.js
+index fe5a2f7..18321ab 100644
+--- a/node_modules/redux-storage-engine-reactnativeasyncstorage/build/index.js
++++ b/node_modules/redux-storage-engine-reactnativeasyncstorage/build/index.js
+@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
+     value: true
+ });
+ 
+-var _asyncStorage = require('@react-native-community/async-storage');
++var _asyncStorage = require('@react-native-async-storage/async-storage');
+ 
+ var _asyncStorage2 = _interopRequireDefault(_asyncStorage);
+ 
+diff --git a/node_modules/redux-storage-engine-reactnativeasyncstorage/src/index.js b/node_modules/redux-storage-engine-reactnativeasyncstorage/src/index.js
+index 062a9b3..6d9ce19 100644
+--- a/node_modules/redux-storage-engine-reactnativeasyncstorage/src/index.js
++++ b/node_modules/redux-storage-engine-reactnativeasyncstorage/src/index.js
+@@ -1,4 +1,4 @@
+-import AsyncStorage from '@react-native-community/async-storage';
++import AsyncStorage from '@react-native-async-storage/async-storage';
+ 
+ export default (key) => ({
+     load() {

@@ -1,0 +1,13 @@
+diff --git a/node_modules/@react-native-community/async-storage/src/AsyncStorage.native.js b/node_modules/@react-native-community/async-storage/src/AsyncStorage.native.js
+index 1ad6d61..09050c0 100644
+--- a/node_modules/@react-native-community/async-storage/src/AsyncStorage.native.js
++++ b/node_modules/@react-native-community/async-storage/src/AsyncStorage.native.js
+@@ -11,7 +11,7 @@
+ 
+ 'use strict';
+ 
+-import RCTAsyncStorage from './RCTAsyncStorage';
++import RCTAsyncStorage from './../../../@react-native-async-storage/async-storage/src/RCTAsyncStorage';
+ 
+ if (!RCTAsyncStorage) {
+   throw new Error(`[@RNC/AsyncStorage]: NativeModule: AsyncStorage is null.
