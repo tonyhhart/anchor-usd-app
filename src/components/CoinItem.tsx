@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
   card: {
     marginBottom: Metrics.base,
     marginHorizontal: Metrics.base,
+    overflow: 'hidden',
   },
   title: {
     marginBottom: Metrics.base / 4,

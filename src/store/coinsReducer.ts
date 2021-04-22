@@ -80,12 +80,13 @@ export const listCoinsAsync = (api_token: string) => (dispatch: StoreDispatch) =
 
 export const getCoinAsync = (
   api_token: string,
-  coin: Coin
+  coin: Coin,
+  period: string
 ): ThunkAction<Promise<Coin>, any, any, AnyAction> => (dispatch) => {
   dispatch(get_coin());
   return new Promise((resolve, reject) => {
     api(api_token)
-      .get(`coins/${coin.id}`)
+      .get(`coins/${coin.id}`, { params: { period } })
       .then(({ data }: AxiosResponse<{ data: Coin }>) => {
         dispatch(get_coin_success(data.data));
         resolve(data.data);

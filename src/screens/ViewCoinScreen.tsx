@@ -20,46 +20,46 @@ export default function ViewCoinScreen() {
   return (
     <>
       <ScrollView contentContainerStyle={styles.scroll}>
-        <SafeAreaView style={globalStyles.safeareaview}>
-          <CoinItem item={coin} showGraphImage={false} showGraph />
+        <CoinItem item={coin} showGraphImage={false} showGraph />
 
-          <View style={globalStyles.content}>
-            <Title>{`What is ${coin.coinname}?`}</Title>
-            <Text
-              style={[globalStyles.contentDescription, styles.description]}
-            >{`${coin.description}`}</Text>
+        <View style={globalStyles.content}>
+          <Title>{`What is ${coin.coinname}?`}</Title>
+          <Text
+            style={[globalStyles.contentDescription, styles.description]}
+          >{`${coin.description}`}</Text>
 
-            <Title>{`${coin.coinname} Statistics`}</Title>
-          </View>
+          <Title>{`${coin.coinname} Statistics`}</Title>
+        </View>
 
-          <List.Item
-            title={`${coin.coinname} Price`}
-            right={() => <Text style={styles.value}>{formatMoney(coin.usd_price)}</Text>}
-          />
-          <Divider />
-        </SafeAreaView>
+        <List.Item
+          title={`${coin.coinname} Price`}
+          right={() => <Text style={styles.value}>{formatMoney(coin.usd_price)}</Text>}
+        />
+        <Divider />
       </ScrollView>
 
       <Surface style={styles.surface}>
-        <View style={globalStyles.row}>
-          <View style={globalStyles.col}>
-            <Button style={globalStyles.button} mode="contained" color={tintColorLight}>
-              Buy
-            </Button>
+        <SafeAreaView edges={['bottom']}>
+          <View style={globalStyles.row}>
+            <View style={globalStyles.col}>
+              <Button style={globalStyles.button} mode="contained" color={tintColorLight}>
+                Buy
+              </Button>
+            </View>
+            <View style={globalStyles.col}>
+              <Button style={globalStyles.button} color={Colors.dark.background} mode="contained">
+                Sell
+              </Button>
+            </View>
           </View>
-          <View style={globalStyles.col}>
-            <Button style={globalStyles.button} color={Colors.dark.background} mode="contained">
-              Sell
-            </Button>
-          </View>
-        </View>
+        </SafeAreaView>
       </Surface>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  scroll: { paddingBottom: Metrics.base * 2 },
+  scroll: { paddingTop: Metrics.base, paddingBottom: Metrics.base * 2 },
   description: {
     marginBottom: Metrics.base,
   },
