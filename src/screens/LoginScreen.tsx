@@ -19,8 +19,8 @@ export default function LoginScreen({
   const { loading, error } = useSelector(selectAuth);
 
   const [formValues, setFormValues] = React.useState({
-    email: 'tonyzoof@gmail.com',
-    password: '12345678',
+    email: '',
+    password: '',
   });
 
   function onChange(name: string, value: string) {
@@ -45,57 +45,53 @@ export default function LoginScreen({
   }
 
   return (
-    <SafeAreaView style={globalStyles.safeareaview}>
-      <KeyboardAwareScrollView
-        keyboardShouldPersistTaps="handled"
-        centerContent
-        style={globalStyles.safeareaview}
-        contentContainerStyle={styles.scroll}
-      >
-        <View>
-          <View style={styles.logoContainer}>
+    <KeyboardAwareScrollView
+      keyboardShouldPersistTaps="handled"
+      centerContent
+      style={globalStyles.safeareaview}
+      contentContainerStyle={styles.scroll}
+    >
+      <SafeAreaView>
+        <View style={styles.logoContainer}>
+          <View style={styles.logo}>
             <Logo width={120} height={120} />
-            <Text style={styles.h1}>Log in</Text>
           </View>
-          <Text style={styles.error}>
-            {` `}
-            {error}
-          </Text>
-          <View>
-            <TextInput
-              mode="outlined"
-              keyboardType="email-address"
-              textContentType="emailAddress"
-              onChangeText={onChangeEmail}
-              label="Email address"
-              placeholder="Email address"
-              autoCapitalize="none"
-            />
-          </View>
-          <View>
-            <TextInput
-              mode="outlined"
-              textContentType="password"
-              secureTextEntry
-              label="Password"
-              onChangeText={onChangePassword}
-              placeholder="Password"
-              style={globalStyles.input}
-              onSubmitEditing={onSubmit}
-            />
-          </View>
-          <Button
-            mode="contained"
-            disabled={loading}
-            style={globalStyles.button}
-            onPress={onSubmit}
-          >
-            Sign in
-          </Button>
-          <Text>© 2021 </Text>
+          <Text style={styles.h1}>Log in</Text>
         </View>
-      </KeyboardAwareScrollView>
-    </SafeAreaView>
+        <Text style={styles.error}>
+          {` `}
+          {error}
+        </Text>
+
+        <TextInput
+          mode="outlined"
+          keyboardType="email-address"
+          textContentType="emailAddress"
+          onChangeText={onChangeEmail}
+          label="Email address"
+          placeholder="Email address"
+          style={globalStyles.input}
+          onSubmitEditing={onSubmit}
+          autoCapitalize="none"
+        />
+
+        <TextInput
+          mode="outlined"
+          textContentType="password"
+          secureTextEntry
+          label="Password"
+          onChangeText={onChangePassword}
+          placeholder="Password"
+          style={globalStyles.input}
+          onSubmitEditing={onSubmit}
+        />
+
+        <Button mode="contained" disabled={loading} style={globalStyles.button} onPress={onSubmit}>
+          Sign in
+        </Button>
+        <Text style={styles.copyright}>© 2021 </Text>
+      </SafeAreaView>
+    </KeyboardAwareScrollView>
   );
 }
 
@@ -107,9 +103,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 80,
-    height: 80,
-    marginBottom: Metrics.base * 2,
+    width: 120,
+    height: 120,
+    borderRadius: 10,
+    overflow: 'hidden',
+    marginBottom: Metrics.base,
   },
   h1: {
     fontWeight: '600',
@@ -122,4 +120,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: Metrics.base,
   },
+  copyright: { textAlign: 'center', marginBottom: Metrics.base * 5 },
 });
