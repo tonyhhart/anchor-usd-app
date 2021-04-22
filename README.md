@@ -29,3 +29,34 @@ yarn
 # Start project
 yarn start
 ```
+
+
+## Screens
+
+### Login
+
+<p>
+    <img alt="login light" width="300" src="https://i.imgur.com/dhIvlba.png">
+    <img alt="login dark" width="300" src="https://i.imgur.com/8iEmUS5.png">
+</p>
+
+### Home
+
+<p>
+    <img alt="login light" width="300" src="https://i.imgur.com/KgeR0PJ.png">
+    <img alt="login dark" width="300" src="https://i.imgur.com/UooUQ40.png">
+</p>
+
+### View 
+
+<p>
+    <img alt="login light" width="300" src="https://i.imgur.com/66idQix.png">
+    <img alt="login dark" width="300" src="https://i.imgur.com/9aZnIri.png">
+</p>
+
+### Settings
+
+<p>
+    <img alt="login light" width="300" src="https://i.imgur.com/qR6mg6b.png">
+    <img alt="login dark" width="300" src="https://i.imgur.com/QcCksBs.png">
+</p>
