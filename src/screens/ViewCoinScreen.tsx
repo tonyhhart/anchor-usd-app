@@ -6,10 +6,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { RouteProp, useRoute } from '@react-navigation/core';
 import CoinItem from 'components/CoinItem';
-import { Text } from 'components/Themed';
+import { Text, View as ViewThemed } from 'components/Themed';
 import Colors, { tintColorLight } from 'constants/Colors';
 import Metrics from 'constants/Metrics';
-import { formatMoney } from 'services/helpers-service';
+import { formatMoney, formatPercentage } from 'services/helpers-service';
 import globalStyles from 'styles/globalStyles';
 import { RootStackParamList } from 'types';
 
@@ -19,23 +19,41 @@ export default function ViewCoinScreen() {
 
   return (
     <>
+      <View style={styles.topBackground} />
       <ScrollView contentContainerStyle={styles.scroll}>
         <CoinItem item={coin} showGraphImage={false} showGraph />
 
-        <View style={globalStyles.content}>
-          <Title>{`What is ${coin.coinname}?`}</Title>
-          <Text
-            style={[globalStyles.contentDescription, styles.description]}
-          >{`${coin.description}`}</Text>
+        <ViewThemed style={styles.container}>
+          <View style={globalStyles.content}>
+            <Title>{`What is ${coin.coinname}?`}</Title>
+            <Text
+              style={[globalStyles.contentDescription, styles.description]}
+            >{`${coin.description}`}</Text>
 
-          <Title>{`${coin.coinname} Statistics`}</Title>
-        </View>
+            <Title>{`${coin.coinname} Statistics`}</Title>
+          </View>
 
-        <List.Item
-          title={`${coin.coinname} Price`}
-          right={() => <Text style={styles.value}>{formatMoney(coin.usd_price)}</Text>}
-        />
-        <Divider />
+          <List.Item
+            title={`${coin.coinname} Price`}
+            right={() => <Text style={styles.value}>{formatMoney(coin.usd_price)}</Text>}
+          />
+          <Divider />
+          <List.Item
+            title="Price Change Last Hour"
+            right={() => (
+              <Text style={styles.value}>{formatPercentage(coin.usd_change_pct_hour ?? 0)}</Text>
+            )}
+          />
+          <Divider />
+          <List.Item
+            title="Price Change Last 24 hours"
+            right={() => (
+              <Text style={styles.value}>
+                {formatPercentage(coin.usd_change_pct_24_hours ?? 0)}
+              </Text>
+            )}
+          />
+        </ViewThemed>
       </ScrollView>
 
       <Surface style={styles.surface}>
@@ -59,7 +77,13 @@ export default function ViewCoinScreen() {
 }
 
 const styles = StyleSheet.create({
-  scroll: { paddingTop: Metrics.base, paddingBottom: Metrics.base * 2 },
+  topBackground: {
+    height: 56,
+    backgroundColor: tintColorLight,
+    marginBottom: -56,
+  },
+  scroll: { paddingTop: Metrics.base },
+  container: { paddingBottom: Metrics.base * 2 },
   description: {
     marginBottom: Metrics.base,
   },

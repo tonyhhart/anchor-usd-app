@@ -19,7 +19,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   card: {
-    elevation: 0,
+    elevation: 1,
 
     borderRadius: Metrics.radius,
 

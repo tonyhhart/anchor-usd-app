@@ -3,7 +3,6 @@ import { StyleSheet, View } from 'react-native';
 import { ActivityIndicator, Button } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 
-import Colors from 'constants/Colors';
 import Layout from 'constants/Layout';
 import Metrics from 'constants/Metrics';
 import useReduxDispatch from 'hooks/useReduxDispatch';
@@ -41,7 +40,7 @@ function CoinGraph({ item }: { item: Coin }) {
     return (
       <View style={[globalStyles.row, styles.actions]}>
         {Object.keys(actions).map((action) => (
-          <View style={globalStyles.col}>
+          <View key={action} style={globalStyles.col}>
             <Button
               mode={period === actions[action] ? 'contained' : 'text'}
               onPress={
@@ -62,7 +61,7 @@ function CoinGraph({ item }: { item: Coin }) {
   }
 
   return (
-    <View>
+    <View style={styles.overflow}>
       <View style={styles.container}>
         <LineChart data={data} width={58 + Layout.window.width - Metrics.base * 2} height={220} />
 
@@ -79,6 +78,7 @@ function CoinGraph({ item }: { item: Coin }) {
 export default CoinGraph;
 
 const styles = StyleSheet.create({
+  overflow: { overflow: 'hidden' },
   container: { marginLeft: -60, position: 'relative' },
   loadingContainer: {
     ...StyleSheet.absoluteFillObject,
