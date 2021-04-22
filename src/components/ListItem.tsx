@@ -72,5 +72,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     margin: 0,
+    alignSelf: 'center',
   },
 });
