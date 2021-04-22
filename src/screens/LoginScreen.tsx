@@ -1,47 +1,70 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Keyboard, StyleSheet, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Button, TextInput, Text } from 'react-native-paper';
+import { Button, Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { StackScreenProps } from '@react-navigation/stack';
 import Logo from 'components/Logo';
+import TextInput from 'components/TextInput';
 import Metrics from 'constants/Metrics';
+import { Formik, FormikProps } from 'formik';
 import { loginAsync, selectAuth } from 'store';
 import globalStyles from 'styles/globalStyles';
-import { PublicStackParamList } from 'types';
+import * as Yup from 'yup';
 
-export default function LoginScreen({
-  navigation,
-}: StackScreenProps<PublicStackParamList, 'Login'>) {
+export default function LoginScreen() {
   const dispatch = useDispatch();
   const { loading, error } = useSelector(selectAuth);
 
-  const [formValues, setFormValues] = React.useState({
-    email: '',
-    password: '',
-  });
+  function handleSubmitAsync(values: LoginFormValues) {
+    Keyboard.dismiss();
 
-  function onChange(name: string, value: string) {
-    setFormValues((values) => ({
-      ...values,
-      [name]: value,
-    }));
+    dispatch(loginAsync(values));
   }
 
-  function onChangeEmail(value: string) {
-    onChange('email', value);
-  }
+  function renderLoginForm(props: FormikProps<LoginFormValues>) {
+    const { errors, setFieldValue, handleSubmit } = props;
 
-  function onChangePassword(value: string) {
-    onChange('password', value);
-  }
+    return (
+      <>
+        <TextInput
+          keyboardType="email-address"
+          textContentType="emailAddress"
+          onChangeText={(value: string): void => setFieldValue('email', value)}
+          label="Email address"
+          placeholder="enter email address"
+          style={globalStyles.input}
+          onSubmitEditing={handleSubmit}
+          autoCapitalize="none"
+          error={errors.email}
+          autoCompleteType="email"
+        />
 
-  function onSubmit() {
-    if (loading) return;
+        <TextInput
+          textContentType="password"
+          secureTextEntry
+          label="Password"
+          onChangeText={(value: string): void => setFieldValue('password', value)}
+          placeholder="enter your password"
+          style={globalStyles.input}
+          error={errors.password}
+          autoCompleteType="password"
+          autoCapitalize="none"
+          onSubmitEditing={handleSubmit}
+          returnKeyType="send"
+        />
 
-    dispatch(loginAsync(formValues));
+        <Button
+          mode="contained"
+          disabled={loading}
+          style={globalStyles.button}
+          onPress={handleSubmit}
+        >
+          Sign in
+        </Button>
+      </>
+    );
   }
 
   return (
@@ -63,37 +86,36 @@ export default function LoginScreen({
           {error}
         </Text>
 
-        <TextInput
-          mode="outlined"
-          keyboardType="email-address"
-          textContentType="emailAddress"
-          onChangeText={onChangeEmail}
-          label="Email address"
-          placeholder="Email address"
-          style={globalStyles.input}
-          onSubmitEditing={onSubmit}
-          autoCapitalize="none"
-        />
+        <Formik
+          initialValues={{
+            email: '',
+            password: '',
+          }}
+          validationSchema={validations}
+          validateOnChange={false}
+          onSubmit={handleSubmitAsync}
+        >
+          {renderLoginForm}
+        </Formik>
 
-        <TextInput
-          mode="outlined"
-          textContentType="password"
-          secureTextEntry
-          label="Password"
-          onChangeText={onChangePassword}
-          placeholder="Password"
-          style={globalStyles.input}
-          onSubmitEditing={onSubmit}
-        />
-
-        <Button mode="contained" disabled={loading} style={globalStyles.button} onPress={onSubmit}>
-          Sign in
-        </Button>
         <Text style={styles.copyright}>© 2021 </Text>
       </SafeAreaView>
     </KeyboardAwareScrollView>
   );
 }
+
+/**
+ * Validações do formulário
+ */
+const validations = Yup.object().shape({
+  email: Yup.string().email().required(),
+  password: Yup.string().required(),
+});
+
+type LoginFormValues = {
+  email: string;
+  password: string;
+};
 
 const styles = StyleSheet.create({
   scroll: {

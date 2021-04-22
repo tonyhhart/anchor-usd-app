@@ -1,7 +1,9 @@
 import { StyleSheet } from 'react-native';
 
+import Colors from 'constants/Colors';
 import Layout from 'constants/Layout';
 import Metrics from 'constants/Metrics';
+import { isIOS } from 'services/helpers-service';
 
 export default StyleSheet.create({
   safeareaview: {
@@ -12,7 +14,13 @@ export default StyleSheet.create({
     paddingHorizontal: Metrics.base,
   },
   input: {
-    marginBottom: Metrics.base,
+    paddingHorizontal: 0,
+  },
+  inputError: {
+    color: Colors.danger,
+    height: 30,
+    lineHeight: 30,
+    marginLeft: isIOS() ? -4 : 0,
   },
   button: {
     marginBottom: Metrics.base,
