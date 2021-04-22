@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { FlatList, StyleSheet, ListRenderItemInfo, Pressable } from 'react-native';
-import { useDispatch, useSelector, useStore } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { useNavigation } from '@react-navigation/core';
 import CoinItem from 'components/CoinItem';
 import Metrics from 'constants/Metrics';
 import { Coin, listCoinsAsync, selectApiToken, selectCoinState } from 'store';
-import { useNavigation } from '@react-navigation/core';
 
 export default function SettingsScreen() {
   const dispatch = useDispatch();
@@ -16,6 +16,7 @@ export default function SettingsScreen() {
   React.useEffect(() => {
     dispatch(listCoinsAsync(api_token));
   }, []);
+
   function renderCoinItem({ item }: ListRenderItemInfo<Coin>) {
     function navigateToViewCoinScreen() {
       navigation.navigate('ViewCoin', { coin: item });

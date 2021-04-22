@@ -68,7 +68,7 @@ export default authSlice.reducer;
 
 export type AuthState = {
   user: User;
-  api_token?: string;
+  api_token: string;
   loading: boolean;
   success: boolean;
   error?: string;

@@ -2,14 +2,24 @@ import * as React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { Avatar, List, Surface } from 'react-native-paper';
 
+import Colors from 'constants/Colors';
 import Metrics from 'constants/Metrics';
+import { formatMoney, formatPercentage } from 'services/helpers-service';
 import { Coin } from 'store';
 import globalStyles from 'styles/globalStyles';
-import { Text } from './Themed';
-import { formatMoney, formatPercentage } from 'services/helpers-service';
-import Colors from 'constants/Colors';
 
-function CoinItem({ item, showGraphImage }: { item: Coin; showGraphImage?: boolean }) {
+import CoinGraph from './CoinGraph';
+import { Text } from './Themed';
+
+function CoinItem({
+  item,
+  showGraph,
+  showGraphImage,
+}: {
+  item: Coin;
+  showGraph?: boolean;
+  showGraphImage?: boolean;
+}) {
   function leftComponent() {
     return <Avatar.Image style={globalStyles.avatar} size={40} source={{ uri: item.image_url }} />;
   }
@@ -53,12 +63,15 @@ function CoinItem({ item, showGraphImage }: { item: Coin; showGraphImage?: boole
         descriptionNumberOfLines={1}
         right={rightComponent}
       />
+
+      {showGraph && <CoinGraph item={item} />}
     </Surface>
   );
 }
 
 CoinItem.defaultProps = {
   showGraphImage: true,
+  showGraph: false,
 };
 
 export default CoinItem;

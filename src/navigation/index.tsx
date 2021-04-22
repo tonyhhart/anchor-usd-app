@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import Colors from 'constants/Colors';
 import LoginScreen from 'screens/LoginScreen';
 import NotFoundScreen from 'screens/NotFoundScreen';
 import ViewCoinScreen from 'screens/ViewCoinScreen';
@@ -17,7 +18,6 @@ import { PublicStackParamList, RootStackParamList } from 'types';
 
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
-import Colors from 'constants/Colors';
 
 const headerStyle = {};
 

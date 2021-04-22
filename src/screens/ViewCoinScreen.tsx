@@ -3,32 +3,25 @@ import { StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Button, Divider, List, Surface, Title } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { RouteProp, useRoute } from '@react-navigation/core';
-import { StackScreenProps } from '@react-navigation/stack';
 import CoinItem from 'components/CoinItem';
-import { Text, View as ViewThemed } from 'components/Themed';
+import { Text } from 'components/Themed';
 import Colors, { tintColorLight } from 'constants/Colors';
 import Metrics from 'constants/Metrics';
 import { formatMoney } from 'services/helpers-service';
-import { selectAuth } from 'store';
 import globalStyles from 'styles/globalStyles';
-import { PublicStackParamList, RootStackParamList } from 'types';
+import { RootStackParamList } from 'types';
 
-export default function ViewCoinScreen({
-  navigation,
-}: StackScreenProps<PublicStackParamList, 'Login'>) {
-  const dispatch = useDispatch();
+export default function ViewCoinScreen() {
   const route: RouteProp<RootStackParamList, 'ViewCoin'> = useRoute();
   const { coin } = route.params;
-  const { loading, error } = useSelector(selectAuth);
 
   return (
     <>
       <ScrollView contentContainerStyle={styles.scroll}>
         <SafeAreaView style={globalStyles.safeareaview}>
-          <CoinItem item={coin} showGraphImage={false} />
+          <CoinItem item={coin} showGraphImage={false} showGraph />
 
           <View style={globalStyles.content}>
             <Title>{`What is ${coin.coinname}?`}</Title>
@@ -75,6 +68,6 @@ const styles = StyleSheet.create({
   },
   surface: {
     paddingHorizontal: Metrics.base,
-    paddingTop: Metrics.base
+    paddingTop: Metrics.base,
   },
 });

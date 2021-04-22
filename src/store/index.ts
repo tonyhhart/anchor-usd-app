@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { applyMiddleware, combineReducers, createStore } from '@reduxjs/toolkit';
+import { AnyAction, applyMiddleware, combineReducers, createStore } from '@reduxjs/toolkit';
 import * as storage from 'redux-storage';
 import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
-import thunk from 'redux-thunk';
+import thunk, { ThunkAction } from 'redux-thunk';
 
 import authReducer, { AuthState } from './authReducer';
 import coinsReducer, { CoinsState } from './coinsReducer';
@@ -48,6 +48,8 @@ export type StoreState = {
 };
 
 export type StoreDispatch = typeof store.dispatch;
+
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, StoreState, unknown, AnyAction>;
 
 export * from './authReducer';
 export * from './coinsReducer';
