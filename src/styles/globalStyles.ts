@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+import Layout from 'constants/Layout';
 import Metrics from 'constants/Metrics';
 
 export default StyleSheet.create({
@@ -52,5 +53,9 @@ export default StyleSheet.create({
   col: {
     flex: 1,
     paddingHorizontal: Metrics.base,
+  },
+  loadingContainer: {
+    minHeight: Layout.window.height - 300,
+    justifyContent: 'center',
   },
 });
