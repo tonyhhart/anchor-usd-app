@@ -77,7 +77,7 @@ export default function RegisterScreen() {
           style={globalStyles.button}
           onPress={handleSubmit}
         >
-          Sign in
+          Sign up
         </Button>
       </>
     );

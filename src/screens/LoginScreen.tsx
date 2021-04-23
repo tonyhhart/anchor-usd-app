@@ -64,7 +64,7 @@ export default function LoginScreen() {
           style={globalStyles.button}
           onPress={handleSubmit}
         >
-          Sign in
+          Log in
         </Button>
       </>
     );
