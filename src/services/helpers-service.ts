@@ -4,6 +4,7 @@ import { API_ENDPOINT } from '@env';
 import * as Haptics from 'expo-haptics';
 import * as WebBrowser from 'expo-web-browser';
 
+export const isWeb = (): boolean => Platform.OS === 'web';
 export const isIOS = (): boolean => Platform.OS === 'ios';
 export const isAndroid = (): boolean => Platform.OS === 'android';
 

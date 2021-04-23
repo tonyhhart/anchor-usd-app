@@ -1,27 +1,92 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Button, Divider, List, Surface, Title } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useSelector } from 'react-redux';
 
 import { RouteProp, useRoute } from '@react-navigation/core';
+import CoinGraph from 'components/CoinGraph';
 import CoinItem from 'components/CoinItem';
 import { Text, View as ViewThemed } from 'components/Themed';
 import Colors, { tintColorLight } from 'constants/Colors';
 import Metrics from 'constants/Metrics';
-import { formatMoney, formatPercentage } from 'services/helpers-service';
+import useReduxDispatch from 'hooks/useReduxDispatch';
+import { formatMoney, formatPercentage, hapticsLight, jsonConsole } from 'services/helpers-service';
+import { getCoinAsync, selectApiToken, selectCoinState } from 'store';
 import globalStyles from 'styles/globalStyles';
 import { RootStackParamList } from 'types';
 
 export default function ViewCoinScreen() {
   const route: RouteProp<RootStackParamList, 'ViewCoin'> = useRoute();
-  const { coin } = route.params;
+  const [coin, setCoin] = useState(route.params.coin);
+
+  const dispatch = useReduxDispatch();
+  const api_token = useSelector(selectApiToken);
+  const { loading } = useSelector(selectCoinState);
+  const [data, setData] = useState([0]);
+  const [period, setPeriod] = useState('day');
+
+  React.useEffect(() => {
+    refresh();
+  }, []);
+
+  function refresh(_period = 'day') {
+    dispatch(getCoinAsync(api_token, coin, _period))
+      .then((c) => {
+        setCoin(c);
+        setData(c.historic.map((h) => h.close));
+      })
+      .catch((error) => jsonConsole(error));
+  }
+
+  function renderActions() {
+    const actions: Record<string, string> = {
+      '1H': 'hour',
+      '1D': 'day',
+      '1W': 'week',
+      '1M': 'month',
+    };
+
+    return (
+      <View style={[globalStyles.row, styles.actions]}>
+        {Object.keys(actions).map((action) => (
+          <View key={action} style={globalStyles.col}>
+            <Button
+              mode={period === actions[action] ? 'contained' : 'text'}
+              onPress={
+                period !== actions[action]
+                  ? () => {
+                      setPeriod(actions[action]);
+                      refresh(actions[action]);
+                      hapticsLight();
+                    }
+                  : undefined
+              }
+            >
+              {action}
+            </Button>
+          </View>
+        ))}
+      </View>
+    );
+  }
 
   return (
     <>
       <View style={styles.topBackground} />
       <ScrollView contentContainerStyle={styles.scroll}>
-        <CoinItem item={coin} showGraphImage={false} showGraph />
+        <CoinItem
+          item={coin}
+          showGraphImage={false}
+          content={
+            <>
+              <CoinGraph data={data} loading={loading} />
+              {renderActions()}
+            </>
+          }
+        />
 
         <ViewThemed style={styles.container}>
           <View style={globalStyles.content}>
@@ -93,5 +158,9 @@ const styles = StyleSheet.create({
   surface: {
     paddingHorizontal: Metrics.base,
     paddingTop: Metrics.base,
+  },
+  actions: {
+    paddingHorizontal: Metrics.base / 4,
+    paddingBottom: Metrics.base / 4,
   },
 });

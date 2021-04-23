@@ -11,16 +11,18 @@ import { ActivityIndicator } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 
 import { useNavigation } from '@react-navigation/core';
+import { Link } from '@react-navigation/native';
 import CoinItem from 'components/CoinItem';
 import Metrics from 'constants/Metrics';
 import useReduxDispatch from 'hooks/useReduxDispatch';
-import { hapticsLight } from 'services/helpers-service';
+import { hapticsLight, isWeb } from 'services/helpers-service';
 import { Coin, listCoinsAsync, selectApiToken, selectCoinState } from 'store';
 import globalStyles from 'styles/globalStyles';
 
 export default function SettingsScreen() {
   const dispatch = useReduxDispatch();
   const navigation = useNavigation();
+
   const { data, success } = useSelector(selectCoinState);
   const api_token = useSelector(selectApiToken);
   const [refreshing, setRefreshing] = React.useState(false);
@@ -42,6 +44,16 @@ export default function SettingsScreen() {
     function navigateToViewCoinScreen() {
       navigation.navigate('ViewCoin', { coin: item });
       hapticsLight();
+    }
+
+    if (isWeb()) {
+      return (
+        <Link to={`/coins/${item.id}`}>
+          <View style={globalStyles.link}>
+            <CoinItem item={item} />
+          </View>
+        </Link>
+      );
     }
 
     return (

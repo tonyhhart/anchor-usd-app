@@ -4,11 +4,15 @@
  *
  */
 import * as React from 'react';
-import { ColorSchemeName } from 'react-native';
+import { ColorSchemeName, Pressable, View } from 'react-native';
+import { IconButton } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
+import { NavigationContainer, DefaultTheme, DarkTheme, Link } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import WebBackButton from 'components/WebBackButton';
+import Metrics from 'constants/Metrics';
 import LoginScreen from 'screens/LoginScreen';
 import NotFoundScreen from 'screens/NotFoundScreen';
 import RegisterScreen from 'screens/RegisterScreen';
@@ -62,6 +66,7 @@ function RootNavigator() {
         options={{
           headerShown: true,
           title: '',
+          // headerLeft: WebBackButton,
           ...headerGreenStyle,
         }}
       />

@@ -27,7 +27,7 @@ export default function LoginScreen() {
   }
 
   function renderLoginForm(props: FormikProps<LoginFormValues>) {
-    const { errors, setFieldValue, handleSubmit } = props;
+    const { values, errors, setFieldValue, handleSubmit } = props;
 
     return (
       <>
@@ -40,6 +40,7 @@ export default function LoginScreen() {
           style={globalStyles.input}
           onSubmitEditing={handleSubmit}
           autoCapitalize="none"
+          value={values.email}
           error={errors.email}
           autoCompleteType="email"
         />
@@ -51,6 +52,7 @@ export default function LoginScreen() {
           onChangeText={(value: string): void => setFieldValue('password', value)}
           placeholder="enter your password"
           style={globalStyles.input}
+          value={values.password}
           error={errors.password}
           autoCompleteType="password"
           autoCapitalize="none"

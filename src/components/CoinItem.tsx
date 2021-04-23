@@ -8,16 +8,15 @@ import { formatMoney, formatPercentage } from 'services/helpers-service';
 import { Coin } from 'store';
 import globalStyles from 'styles/globalStyles';
 
-import CoinGraph from './CoinGraph';
 import { Surface, Text } from './Themed';
 
 function CoinItem({
   item,
-  showGraph,
+  content,
   showGraphImage,
 }: {
   item: Coin;
-  showGraph?: boolean;
+  content?: React.ReactElement;
   showGraphImage?: boolean;
 }) {
   function leftComponent() {
@@ -64,14 +63,14 @@ function CoinItem({
         right={rightComponent}
       />
 
-      {showGraph && <CoinGraph item={item} />}
+      {content}
     </Surface>
   );
 }
 
 CoinItem.defaultProps = {
   showGraphImage: true,
-  showGraph: false,
+  content: undefined,
 };
 
 export default CoinItem;
