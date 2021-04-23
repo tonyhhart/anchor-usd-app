@@ -3,8 +3,9 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "node index.js",
-    "deploy": "gh-pages -d web-build --before-add ./gh-predeploy.js",
-    "predeploy": "expo build:web",
+    "postdeploy": "node gh-postdeploy.js",
+    "deploy": "gh-pages -d web-build",
+    "predeploy": "expo build:web && node gh-predeploy.js",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",

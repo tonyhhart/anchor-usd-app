@@ -3,7 +3,9 @@ const path = require('path');
 const serveStatic = require('serve-static');
 
 const app = express();
-app.use(serveStatic(path.join(__dirname, 'web-build'), { maxAge: 24 * 60 * 1000 }));
+app.use(
+  serveStatic(path.join(__dirname, 'web-build'), { maxAge: 24 * 60 * 1000, immutable: true })
+);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'web-build/index.html'));
 });
