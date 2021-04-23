@@ -17,6 +17,7 @@ import LoginScreen from 'screens/LoginScreen';
 import NotFoundScreen from 'screens/NotFoundScreen';
 import RegisterScreen from 'screens/RegisterScreen';
 import ViewCoinScreen from 'screens/ViewCoinScreen';
+import { isWeb } from 'services/helpers-service';
 import { selectApiToken } from 'store';
 import { headerGreenStyle } from 'styles/globalStyles';
 import { PublicStackParamList, RootStackParamList } from 'types';
@@ -66,8 +67,8 @@ function RootNavigator() {
         options={{
           headerShown: true,
           title: '',
-          // headerLeft: WebBackButton,
           ...headerGreenStyle,
+          ...(isWeb() ? { headerLeft: WebBackButton } : {}),
         }}
       />
       <RootStack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
