@@ -8,4 +8,7 @@
 app.json
 App.tsx
 babel.config.js
+package.json
+postinstall.js
 tsconfig.json
+yarn.lock
