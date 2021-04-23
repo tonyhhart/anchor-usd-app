@@ -124,7 +124,7 @@ export default function RegisterScreen() {
           {renderLoginForm}
         </Formik>
 
-        <Button onPress={navigateToLogin} style={styles.register} mode="text" uppercase={false}>
+        <Button onPress={navigateToLogin} style={styles.login} mode="text" uppercase={false}>
           <Text>
             Already have an account? <Text style={globalStyles.tint}>Login</Text>
           </Text>
@@ -156,6 +156,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Metrics.base,
   },
   logoContainer: {
+    marginTop: Metrics.base,
     alignItems: 'center',
   },
   logo: {
@@ -176,7 +177,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: Metrics.base,
   },
-  register: {
+  login: {
     marginTop: Metrics.base,
     marginBottom: Metrics.base,
   },

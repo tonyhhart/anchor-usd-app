@@ -138,8 +138,11 @@ type LoginFormValues = {
 const styles = StyleSheet.create({
   scroll: {
     paddingHorizontal: Metrics.base,
+    justifyContent: 'center',
+    flex: 1,
   },
   logoContainer: {
+    marginTop: Metrics.base,
     alignItems: 'center',
   },
   logo: {
