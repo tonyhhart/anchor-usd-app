@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ListItem from 'components/ListItem';
 import ListSubheader from 'components/ListSubheader';
 import Metrics from 'constants/Metrics';
+import { openUrl } from 'services/helpers-service';
 import { logout, selecUser } from 'store';
 import { SettingsSectionData, SettingsItem, SettingsSection } from 'types';
 
@@ -100,13 +101,21 @@ export default function ExploreScreen() {
           title: 'Contact Support',
           description: 'Get help, or share feedback',
           icon: 'message-outline',
+          onPress: () =>
+            openUrl(
+              `https://dashboard.anchorusd.com/support/contact?email=${user.email}&name=Anchor User`
+            ),
         },
       ],
     },
   ];
 
   function renderItem({ item }: ListRenderItemInfo<SettingsItem>) {
-    return <ListItem {...item} />;
+    return (
+      <View style={[!item.onPress && styles.disabled]}>
+        <ListItem {...item} />
+      </View>
+    );
   }
 
   function renderListHeaderComponent() {
@@ -149,5 +158,8 @@ const styles = StyleSheet.create({
   },
   logout: {
     marginTop: Metrics.base * 2,
+  },
+  disabled: {
+    opacity: 0.5,
   },
 });

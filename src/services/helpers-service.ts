@@ -1,6 +1,7 @@
-import { Platform } from 'react-native';
+import { Linking, Platform } from 'react-native';
 
 import { API_ENDPOINT } from '@env';
+import * as WebBrowser from 'expo-web-browser';
 
 export const isIOS = (): boolean => Platform.OS === 'ios';
 export const isAndroid = (): boolean => Platform.OS === 'android';
@@ -42,4 +43,8 @@ export function hexToRgbA(hex: string, opacity = 1): string {
     return `rgba(${[(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',')},${opacity})`;
   }
   throw new Error('Bad Hex');
+}
+
+export function openUrl(url: string) {
+  return WebBrowser.openBrowserAsync(url).catch(() => Linking.openURL(url));
 }
