@@ -4,8 +4,9 @@
  */
 
 import * as React from 'react';
-import { Text as DefaultText, View as DefaultView } from 'react-native';
+import { View as DefaultView } from 'react-native';
 import { LineChart as DefaulLineChart } from 'react-native-chart-kit';
+import { Text as DefaultText } from 'react-native-paper';
 
 import Colors from 'constants/Colors';
 import useColorScheme from 'hooks/useColorScheme';

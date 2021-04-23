@@ -30,14 +30,20 @@ yarn
 yarn start
 ```
 
-
 ## Screens
 
 ### Login
 
 <p>
-    <img alt="login light" width="300" src="https://i.imgur.com/dhIvlba.png">
-    <img alt="login dark" width="300" src="https://i.imgur.com/8iEmUS5.png">
+    <img alt="login light" width="300" src="https://i.imgur.com/eKPrFVa.png">
+    <img alt="login dark" width="300" src="https://i.imgur.com/9s0W3D7.png">
+</p>
+
+### Register
+
+<p>
+    <img alt="login light" width="300" src="https://i.imgur.com/redQoDy.png">
+    <img alt="login dark" width="300" src="https://i.imgur.com/M9sXISR.png">
 </p>
 
 ### Home
@@ -47,7 +53,7 @@ yarn start
     <img alt="login dark" width="300" src="https://i.imgur.com/UooUQ40.png">
 </p>
 
-### View 
+### View
 
 <p>
     <img alt="login light" width="300" src="https://i.imgur.com/66idQix.png">

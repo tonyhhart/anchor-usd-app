@@ -15,7 +15,7 @@ const reducer = storage.reducer(
   })
 );
 
-const engine = createEngine('anchor-usd-app-store-2');
+const engine = createEngine('anchor-usd-app');
 
 const middleware = storage.createMiddleware(engine);
 

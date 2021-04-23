@@ -12,6 +12,7 @@ import { createStackNavigator, StackNavigationOptions } from '@react-navigation/
 import Colors from 'constants/Colors';
 import LoginScreen from 'screens/LoginScreen';
 import NotFoundScreen from 'screens/NotFoundScreen';
+import RegisterScreen from 'screens/RegisterScreen';
 import ViewCoinScreen from 'screens/ViewCoinScreen';
 import { selectApiToken } from 'store';
 import { PublicStackParamList, RootStackParamList } from 'types';
@@ -51,6 +52,7 @@ function RootNavigator() {
     return (
       <PublicStack.Navigator screenOptions={{ headerShown: false }}>
         <PublicStack.Screen name="Login" component={LoginScreen} />
+        <PublicStack.Screen name="Register" component={RegisterScreen} />
       </PublicStack.Navigator>
     );
   }

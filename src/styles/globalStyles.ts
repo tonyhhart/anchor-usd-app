@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import Colors from 'constants/Colors';
+import Colors, { tintColorLight } from 'constants/Colors';
 import Layout from 'constants/Layout';
 import Metrics from 'constants/Metrics';
 import { isIOS } from 'services/helpers-service';
@@ -66,4 +66,5 @@ export default StyleSheet.create({
     minHeight: Layout.window.height - 300,
     justifyContent: 'center',
   },
+  tint: { color: tintColorLight },
 });

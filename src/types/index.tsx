@@ -21,6 +21,7 @@ export type SettingsSectionData = SettingsSection[];
 
 export type PublicStackParamList = {
   Login: undefined;
+  Register: undefined;
 };
 
 export type RootStackParamList = {

@@ -58,6 +58,22 @@ export const loginAsync = (params: { email: string; password: string }) => (
     });
 };
 
+export const registerAsync = (params: {
+  email: string;
+  password: string;
+  password_confirmation: string;
+}) => (dispatch: StoreDispatch) => {
+  dispatch(login());
+  api()
+    .post('register', params)
+    .then(({ data }: AxiosResponse<{ data: User }>) => {
+      dispatch(login_success(data.data));
+    })
+    .catch((error) => {
+      dispatch(login_error(getErrorMessage(error)));
+    });
+};
+
 export const selectAuth = (state: StoreState) => state.auth;
 
 export const selecUser = (state: StoreState) => state.auth.user;
