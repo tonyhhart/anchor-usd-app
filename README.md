@@ -35,15 +35,15 @@ yarn start
 ### Login
 
 <p>
-    <img alt="login light" width="300" src="https://i.imgur.com/eKPrFVa.png">
-    <img alt="login dark" width="300" src="https://i.imgur.com/9s0W3D7.png">
+    <img alt="login light" width="300" src="https://i.imgur.com/fOPhWjl.png">
+    <img alt="login dark" width="300" src="https://i.imgur.com/XsIVtol.png">
 </p>
 
 ### Register
 
 <p>
-    <img alt="login light" width="300" src="https://i.imgur.com/redQoDy.png">
-    <img alt="login dark" width="300" src="https://i.imgur.com/M9sXISR.png">
+    <img alt="login light" width="300" src="https://i.imgur.com/t45LXuJ.png">
+    <img alt="login dark" width="300" src="https://i.imgur.com/okyV0xG.png">
 </p>
 
 ### Home
