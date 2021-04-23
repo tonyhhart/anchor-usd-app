@@ -49,8 +49,8 @@ yarn start
 ### Home
 
 <p>
-    <img alt="login light" width="300" src="https://i.imgur.com/O0jbw8k.png">
-    <img alt="login dark" width="300" src="https://i.imgur.com/Liptovm.png">
+    <img alt="login light" width="300" src="https://i.imgur.com/E5gs3gh.png">
+    <img alt="login dark" width="300" src="https://i.imgur.com/S52Zzpp.png">
 </p>
 
 ### View
@@ -63,13 +63,20 @@ yarn start
 ### Portifolio
 
 <p>
-    <img alt="login light" width="300" src="https://i.imgur.com/VfjaE8s.png">
-    <img alt="login dark" width="300" src="https://i.imgur.com/wB4StzE.png">
+    <img alt="login light" width="300" src="https://i.imgur.com/miQG271.png">
+    <img alt="login dark" width="300" src="https://i.imgur.com/eXEbgG2.png">
+</p>
+
+### Move
+
+<p>
+    <img alt="login light" width="300" src="https://i.imgur.com/vaKT8tn.png">
+    <img alt="login dark" width="300" src="https://i.imgur.com/6mTh3mg.png">
 </p>
 
 ### Settings
 
 <p>
-    <img alt="login light" width="300" src="https://i.imgur.com/qR6mg6b.png">
-    <img alt="login dark" width="300" src="https://i.imgur.com/QcCksBs.png">
+    <img alt="login light" width="300" src="https://i.imgur.com/nGf2Qxa.png">
+    <img alt="login dark" width="300" src="https://i.imgur.com/cMpdFwK.png">
 </p>
