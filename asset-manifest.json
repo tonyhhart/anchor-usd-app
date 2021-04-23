@@ -1,0 +1,35 @@
+{
+  "files": {
+    "app.js": "/anchor-usd-app/static/js/app.b102f258.chunk.js",
+    "app.js.map": "/anchor-usd-app/static/js/app.b102f258.chunk.js.map",
+    "runtime~app.js": "/anchor-usd-app/static/js/runtime~app.6d878ab7.js",
+    "runtime~app.js.map": "/anchor-usd-app/static/js/runtime~app.6d878ab7.js.map",
+    "static/js/2.c29836ef.chunk.js": "/anchor-usd-app/static/js/2.c29836ef.chunk.js",
+    "static/js/2.c29836ef.chunk.js.map": "/anchor-usd-app/static/js/2.c29836ef.chunk.js.map",
+    "fonts/AntDesign.ttf": "/anchor-usd-app/./fonts/AntDesign.ttf",
+    "fonts/Entypo.ttf": "/anchor-usd-app/./fonts/Entypo.ttf",
+    "fonts/Feather.ttf": "/anchor-usd-app/./fonts/Feather.ttf",
+    "fonts/FontAwesome.ttf": "/anchor-usd-app/./fonts/FontAwesome.ttf",
+    "fonts/FontAwesome5_Brands.ttf": "/anchor-usd-app/./fonts/FontAwesome5_Brands.ttf",
+    "fonts/FontAwesome5_Solid.ttf": "/anchor-usd-app/./fonts/FontAwesome5_Solid.ttf",
+    "fonts/Fontisto.ttf": "/anchor-usd-app/./fonts/Fontisto.ttf",
+    "fonts/Foundation.ttf": "/anchor-usd-app/./fonts/Foundation.ttf",
+    "fonts/Ionicons.ttf": "/anchor-usd-app/./fonts/Ionicons.ttf",
+    "fonts/MaterialCommunityIcons.ttf": "/anchor-usd-app/./fonts/MaterialCommunityIcons.ttf",
+    "fonts/MaterialIcons.ttf": "/anchor-usd-app/./fonts/MaterialIcons.ttf",
+    "fonts/SimpleLineIcons.ttf": "/anchor-usd-app/./fonts/SimpleLineIcons.ttf",
+    "fonts/SpaceMono-Regular.ttf": "/anchor-usd-app/./fonts/SpaceMono-Regular.ttf",
+    "favicon-16.png": "/anchor-usd-app/favicon-16.png",
+    "favicon-32.png": "/anchor-usd-app/favicon-32.png",
+    "favicon.ico": "/anchor-usd-app/favicon.ico",
+    "index.html": "/anchor-usd-app/index.html",
+    "manifest.json": "/anchor-usd-app/manifest.json",
+    "serve.json": "/anchor-usd-app/serve.json",
+    "static/js/2.c29836ef.chunk.js.LICENSE.txt": "/anchor-usd-app/static/js/2.c29836ef.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime~app.6d878ab7.js",
+    "static/js/2.c29836ef.chunk.js",
+    "static/js/app.b102f258.chunk.js"
+  ]
+}
