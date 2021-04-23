@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Svg, { G, Defs, Rect, Path, Circle, Mask, MarkerUnits, ClipPath } from 'react-native-svg';
+import Svg, { G, Defs, Rect, Path, Circle, Mask, ClipPath } from 'react-native-svg';
 
 function Logo(props: { width?: number; height?: number }) {
   return (

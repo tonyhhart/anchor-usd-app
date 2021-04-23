@@ -6,11 +6,12 @@
 import * as React from 'react';
 import { View as DefaultView } from 'react-native';
 import { LineChart as DefaulLineChart } from 'react-native-chart-kit';
-import { Text as DefaultText } from 'react-native-paper';
+import { Surface as DefaultSurface, Text as DefaultText } from 'react-native-paper';
 
 import Colors from 'constants/Colors';
 import useColorScheme from 'hooks/useColorScheme';
 import { hexToRgbA } from 'services/helpers-service';
+import globalStyles from 'styles/globalStyles';
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
@@ -30,7 +31,8 @@ type ThemeProps = {
   darkColor?: string;
 };
 
-export type TextProps = ThemeProps & DefaultText['props'];
+export type TextProps = ThemeProps & React.ComponentProps<typeof DefaultText>;
+export type SurfaceProps = ThemeProps & React.ComponentProps<typeof DefaultSurface>;
 export type ViewProps = ThemeProps & DefaultView['props'];
 export type DefaulLineChartProps = ThemeProps &
   Pick<DefaulLineChart['props'], Exclude<keyof DefaulLineChart['props'], 'data'>> & {
@@ -44,11 +46,12 @@ export function Text(props: TextProps) {
   return <DefaultText style={[{ color }, style]} {...otherProps} />;
 }
 
-export function View(props: ViewProps) {
-  const { style, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
+export function Surface(props: SurfaceProps) {
+  const { style, ...otherProps } = props;
+  const themeStyle =
+    useColorScheme() === 'light' ? { shadowColor: '#6394c6' } : { shadowColor: '#000000' };
 
-  return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
+  return <DefaultSurface style={[themeStyle, globalStyles.card, style]} {...otherProps} />;
 }
 
 export function LineChart(props: DefaulLineChartProps) {

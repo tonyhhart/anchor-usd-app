@@ -33,6 +33,7 @@ export type RootStackParamList = {
 export type BottomTabParamList = {
   ExploreTab: undefined;
   SettingsTab: undefined;
+  PortifolioTab: undefined;
 };
 
 export type ExploreTabParamList = {
@@ -41,4 +42,8 @@ export type ExploreTabParamList = {
 
 export type SettingsTabParamList = {
   SettingsScreen: undefined;
+};
+
+export type PortifolioTabParamList = {
+  PortifolioScreen: undefined;
 };

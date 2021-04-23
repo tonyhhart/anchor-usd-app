@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
-import { Avatar, List, Surface } from 'react-native-paper';
+import { Avatar, List } from 'react-native-paper';
 
 import Colors from 'constants/Colors';
 import Metrics from 'constants/Metrics';
@@ -9,7 +9,7 @@ import { Coin } from 'store';
 import globalStyles from 'styles/globalStyles';
 
 import CoinGraph from './CoinGraph';
-import { Text } from './Themed';
+import { Surface, Text } from './Themed';
 
 function CoinItem({
   item,
@@ -53,7 +53,7 @@ function CoinItem({
   }
 
   return (
-    <Surface style={[globalStyles.card, styles.card]}>
+    <Surface style={styles.card}>
       <List.Item
         title={item.coinname}
         titleStyle={styles.title}

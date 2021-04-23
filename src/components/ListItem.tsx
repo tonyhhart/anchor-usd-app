@@ -1,35 +1,40 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-import { Divider, List, Surface } from 'react-native-paper';
+import { Divider, List } from 'react-native-paper';
 
 import Metrics from 'constants/Metrics';
+import globalStyles from 'styles/globalStyles';
+
+import { Surface } from './Themed';
 
 function ListItem(props: Props) {
+  const { size, destructive, cardDisabled, showDividers, icon, onPress } = props;
+
   return (
-    <Surface style={styles.surface}>
-      <Divider />
+    <Surface style={[cardDisabled ? globalStyles.cardDisabled : globalStyles.card]}>
+      {showDividers && <Divider />}
       <List.Item
-        style={[styles.item, props.destructive && styles.itemDestructive]}
+        style={[styles.item, destructive && styles.itemDestructive]}
         titleStyle={[
           styles.title,
-          props.size === 'large' && styles.titleLarge,
-          props.destructive && styles.titleDestructive,
+          size === 'large' && styles.titleLarge,
+          destructive && styles.titleDestructive,
         ]}
         left={
-          props.icon
-            ? (iconProps) => <List.Icon {...iconProps} icon={props.icon} style={styles.icon} />
-            : null
+          icon
+            ? (iconProps) => <List.Icon {...iconProps} icon={icon} style={styles.icon} />
+            : undefined
         }
         right={
-          props.onPress
+          onPress
             ? (iconProps) => (
                 <List.Icon {...iconProps} icon="chevron-right" style={styles.icon} color="red" />
               )
-            : null
+            : undefined
         }
         {...props}
       />
-      <Divider />
+      {showDividers && <Divider />}
     </Surface>
   );
 }
@@ -38,13 +43,19 @@ ListItem.defaultProps = {
   size: 'default',
   destructive: false,
   onPress: null,
+  icon: undefined,
+  cardDisabled: false,
+  showDividers: false,
 };
 
 export default ListItem;
 
-type Props = React.ComponentProps<List.Item> & {
+type Props = React.ComponentProps<typeof List.Item> & {
   size?: 'small' | 'default' | 'large';
+  icon?: string;
   destructive?: boolean;
+  cardDisabled?: boolean;
+  showDividers?: boolean;
   onPress?: () => any;
 };
 

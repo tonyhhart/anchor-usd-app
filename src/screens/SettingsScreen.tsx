@@ -113,7 +113,7 @@ export default function ExploreScreen() {
   function renderItem({ item }: ListRenderItemInfo<SettingsItem>) {
     return (
       <View style={[!item.onPress && styles.disabled]}>
-        <ListItem {...item} />
+        <ListItem {...item} cardDisabled showDividers />
       </View>
     );
   }

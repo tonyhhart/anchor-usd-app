@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+import { StackNavigationOptions } from '@react-navigation/stack';
 import Colors, { tintColorLight } from 'constants/Colors';
 import Layout from 'constants/Layout';
 import Metrics from 'constants/Metrics';
@@ -32,13 +33,15 @@ export default StyleSheet.create({
 
     borderRadius: Metrics.radius,
 
-    shadowColor: '#6394c6',
     shadowOffset: {
       width: 0,
       height: 4,
     },
     shadowOpacity: 0.2,
     shadowRadius: 5.46,
+  },
+  cardDisabled: {
+    elevation: 0,
   },
   avatar: {
     alignSelf: 'center',
@@ -68,3 +71,24 @@ export default StyleSheet.create({
   },
   tint: { color: tintColorLight },
 });
+
+export const headerStyle: StackNavigationOptions = {
+  headerStyle: {
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+  },
+  headerTitleStyle: {
+    fontWeight: '700',
+    letterSpacing: 1,
+  },
+};
+
+export const headerGreenStyle: StackNavigationOptions = {
+  headerStyle: {
+    ...headerStyle.headerStyle,
+    backgroundColor: Colors.light.tint,
+  },
+  headerTintColor: Colors.white,
+};

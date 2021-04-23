@@ -8,28 +8,17 @@ import { ColorSchemeName } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
-import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
-import Colors from 'constants/Colors';
+import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from 'screens/LoginScreen';
 import NotFoundScreen from 'screens/NotFoundScreen';
 import RegisterScreen from 'screens/RegisterScreen';
 import ViewCoinScreen from 'screens/ViewCoinScreen';
 import { selectApiToken } from 'store';
+import { headerGreenStyle } from 'styles/globalStyles';
 import { PublicStackParamList, RootStackParamList } from 'types';
 
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
-
-const headerStyle: StackNavigationOptions = {
-  headerStyle: {
-    backgroundColor: Colors.light.tint,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-  },
-  headerTintColor: Colors.white,
-};
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -73,7 +62,7 @@ function RootNavigator() {
         options={{
           headerShown: true,
           title: '',
-          ...headerStyle,
+          ...headerGreenStyle,
         }}
       />
       <RootStack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />

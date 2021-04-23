@@ -7,8 +7,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Colors from 'constants/Colors';
 import useColorScheme from 'hooks/useColorScheme';
 import ExploreScreen from 'screens/ExploreScreen';
+import PortifolioScreen from 'screens/PortifolioScreen';
 import SettingsScreen from 'screens/SettingsScreen';
-import { BottomTabParamList, ExploreTabParamList, SettingsTabParamList } from 'types';
+import { headerStyle } from 'styles/globalStyles';
+import {
+  BottomTabParamList,
+  ExploreTabParamList,
+  PortifolioTabParamList,
+  SettingsTabParamList,
+} from 'types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -28,6 +35,13 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
+        name="PortifolioTab"
+        component={PortifolioTab}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="wallet-sharp" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
         name="SettingsTab"
         component={SettingsTab}
         options={{
@@ -44,6 +58,7 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 
 const ExploreTabStack = createStackNavigator<ExploreTabParamList>();
 const SettingsTabStack = createStackNavigator<SettingsTabParamList>();
+const PortifolioTabStack = createStackNavigator<PortifolioTabParamList>();
 
 function ExploreTab() {
   return (
@@ -51,7 +66,7 @@ function ExploreTab() {
       <ExploreTabStack.Screen
         name="ExploreScreen"
         component={ExploreScreen}
-        options={{ headerTitle: 'Explore' }}
+        options={{ headerTitle: 'Explore', ...headerStyle }}
       />
     </ExploreTabStack.Navigator>
   );
@@ -63,8 +78,20 @@ function SettingsTab() {
       <SettingsTabStack.Screen
         name="SettingsScreen"
         component={SettingsScreen}
-        options={{ headerTitle: 'Settings' }}
+        options={{ headerTitle: 'Settings', ...headerStyle }}
       />
     </SettingsTabStack.Navigator>
+  );
+}
+
+function PortifolioTab() {
+  return (
+    <PortifolioTabStack.Navigator>
+      <PortifolioTabStack.Screen
+        name="PortifolioScreen"
+        component={PortifolioScreen}
+        options={{ headerTitle: 'Portfolio', ...headerStyle }}
+      />
+    </PortifolioTabStack.Navigator>
   );
 }

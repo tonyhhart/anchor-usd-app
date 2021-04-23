@@ -49,8 +49,8 @@ yarn start
 ### Home
 
 <p>
-    <img alt="login light" width="300" src="https://i.imgur.com/KgeR0PJ.png">
-    <img alt="login dark" width="300" src="https://i.imgur.com/UooUQ40.png">
+    <img alt="login light" width="300" src="https://i.imgur.com/O0jbw8k.png">
+    <img alt="login dark" width="300" src="https://i.imgur.com/Liptovm.png">
 </p>
 
 ### View
@@ -58,6 +58,13 @@ yarn start
 <p>
     <img alt="login light" width="300" src="https://i.imgur.com/66idQix.png">
     <img alt="login dark" width="300" src="https://i.imgur.com/9aZnIri.png">
+</p>
+
+### Portifolio
+
+<p>
+    <img alt="login light" width="300" src="https://i.imgur.com/StyBWEV.png">
+    <img alt="login dark" width="300" src="https://i.imgur.com/nxSannF.png">
 </p>
 
 ### Settings
