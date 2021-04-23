@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
+import { View } from 'react-native';
+import { EdgeInsets, SafeAreaInsetsContext } from 'react-native-safe-area-context';
 
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -7,12 +9,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Colors from 'constants/Colors';
 import useColorScheme from 'hooks/useColorScheme';
 import ExploreScreen from 'screens/ExploreScreen';
+import MoveScreen from 'screens/MoveScreen';
 import PortifolioScreen from 'screens/PortifolioScreen';
 import SettingsScreen from 'screens/SettingsScreen';
-import { headerStyle } from 'styles/globalStyles';
+import { headerStyle, tabOptions } from 'styles/globalStyles';
 import {
   BottomTabParamList,
   ExploreTabParamList,
+  MoveTabParamList,
   PortifolioTabParamList,
   SettingsTabParamList,
 } from 'types';
@@ -22,34 +26,48 @@ const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
 
-  return (
-    <BottomTab.Navigator
-      initialRouteName="ExploreTab"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint, showLabel: false }}
-    >
-      <BottomTab.Screen
-        name="ExploreTab"
-        component={ExploreTab}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="compass-outline" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="PortifolioTab"
-        component={PortifolioTab}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="wallet-sharp" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="SettingsTab"
-        component={SettingsTab}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="cog" color={color} />,
-        }}
-      />
-    </BottomTab.Navigator>
-  );
+  function renderTabs(insets: EdgeInsets | null) {
+    return (
+      <>
+        <BottomTab.Navigator
+          initialRouteName="ExploreTab"
+          tabBarOptions={{ ...tabOptions, activeTintColor: Colors[colorScheme].tint }}
+        >
+          <BottomTab.Screen
+            name="ExploreTab"
+            component={ExploreTab}
+            options={{
+              tabBarIcon: (props) => <TabBarIcon {...props} name="compass-sharp" />,
+            }}
+          />
+          <BottomTab.Screen
+            name="PortifolioTab"
+            component={PortifolioTab}
+            options={{
+              tabBarIcon: (props) => <TabBarIcon {...props} name="wallet-sharp" />,
+            }}
+          />
+          <BottomTab.Screen
+            name="MoveTab"
+            component={MoveTab}
+            options={{
+              tabBarIcon: (props) => <TabBarIcon {...props} name="people-sharp" />,
+            }}
+          />
+          <BottomTab.Screen
+            name="SettingsTab"
+            component={SettingsTab}
+            options={{
+              tabBarIcon: (props) => <TabBarIcon {...props} name="settings-sharp" />,
+            }}
+          />
+        </BottomTab.Navigator>
+        <View style={{ height: insets?.bottom }} backgroundColor={Colors[colorScheme].background} />
+      </>
+    );
+  }
+
+  return <SafeAreaInsetsContext.Consumer>{renderTabs}</SafeAreaInsetsContext.Consumer>;
 }
 
 function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
@@ -59,6 +77,7 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 const ExploreTabStack = createStackNavigator<ExploreTabParamList>();
 const SettingsTabStack = createStackNavigator<SettingsTabParamList>();
 const PortifolioTabStack = createStackNavigator<PortifolioTabParamList>();
+const MoveTabStack = createStackNavigator<MoveTabParamList>();
 
 function ExploreTab() {
   return (
@@ -83,7 +102,6 @@ function SettingsTab() {
     </SettingsTabStack.Navigator>
   );
 }
-
 function PortifolioTab() {
   return (
     <PortifolioTabStack.Navigator>
@@ -93,5 +111,17 @@ function PortifolioTab() {
         options={{ headerTitle: 'Portfolio', ...headerStyle }}
       />
     </PortifolioTabStack.Navigator>
+  );
+}
+
+function MoveTab() {
+  return (
+    <MoveTabStack.Navigator>
+      <MoveTabStack.Screen
+        name="MoveScreen"
+        component={MoveScreen}
+        options={{ headerTitle: 'Move', ...headerStyle }}
+      />
+    </MoveTabStack.Navigator>
   );
 }

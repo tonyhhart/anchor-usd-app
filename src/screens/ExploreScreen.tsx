@@ -14,13 +14,14 @@ import { useNavigation } from '@react-navigation/core';
 import CoinItem from 'components/CoinItem';
 import Metrics from 'constants/Metrics';
 import useReduxDispatch from 'hooks/useReduxDispatch';
+import { hapticsLight } from 'services/helpers-service';
 import { Coin, listCoinsAsync, selectApiToken, selectCoinState } from 'store';
 import globalStyles from 'styles/globalStyles';
 
 export default function SettingsScreen() {
   const dispatch = useReduxDispatch();
   const navigation = useNavigation();
-  const { data, success, loading } = useSelector(selectCoinState);
+  const { data, success } = useSelector(selectCoinState);
   const api_token = useSelector(selectApiToken);
   const [refreshing, setRefreshing] = React.useState(false);
 
@@ -36,6 +37,7 @@ export default function SettingsScreen() {
   function renderCoinItem({ item }: ListRenderItemInfo<Coin>) {
     function navigateToViewCoinScreen() {
       navigation.navigate('ViewCoin', { coin: item });
+      hapticsLight();
     }
 
     return (

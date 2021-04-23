@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import Layout from 'constants/Layout';
 import Metrics from 'constants/Metrics';
 import useReduxDispatch from 'hooks/useReduxDispatch';
-import { jsonConsole } from 'services/helpers-service';
+import { hapticsLight, jsonConsole } from 'services/helpers-service';
 import { Coin, getCoinAsync, selectApiToken, selectCoinState } from 'store';
 import globalStyles from 'styles/globalStyles';
 
@@ -48,6 +48,7 @@ function CoinGraph({ item }: { item: Coin }) {
                   ? () => {
                       setPeriod(actions[action]);
                       refresh(actions[action]);
+                      hapticsLight();
                     }
                   : undefined
               }

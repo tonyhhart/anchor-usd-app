@@ -1,6 +1,7 @@
 import { Linking, Platform } from 'react-native';
 
 import { API_ENDPOINT } from '@env';
+import * as Haptics from 'expo-haptics';
 import * as WebBrowser from 'expo-web-browser';
 
 export const isIOS = (): boolean => Platform.OS === 'ios';
@@ -11,6 +12,14 @@ export function jsonConsole(...any: unknown[]): void {
     // eslint-disable-next-line no-console
     console.log(JSON.stringify(any[i], null, 2));
   }
+}
+
+export function hapticsSelect(): void {
+  if (isIOS()) Haptics.selectionAsync();
+}
+
+export function hapticsLight(): void {
+  if (isIOS()) Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 }
 
 export function imageUrl(path: string): string {

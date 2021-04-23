@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+import { BottomTabBarOptions } from '@react-navigation/bottom-tabs';
 import { StackNavigationOptions } from '@react-navigation/stack';
 import Colors, { tintColorLight } from 'constants/Colors';
 import Layout from 'constants/Layout';
@@ -59,11 +60,11 @@ export default StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    marginHorizontal: -Metrics.base,
+    marginHorizontal: Metrics.base * -0.5,
   },
   col: {
     flex: 1,
-    paddingHorizontal: Metrics.base,
+    paddingHorizontal: Metrics.base / 2,
   },
   loadingContainer: {
     minHeight: Layout.window.height - 300,
@@ -91,4 +92,14 @@ export const headerGreenStyle: StackNavigationOptions = {
     backgroundColor: Colors.light.tint,
   },
   headerTintColor: Colors.white,
+};
+
+export const tabOptions: BottomTabBarOptions = {
+  safeAreaInsets: {
+    bottom: 0,
+  },
+  style: {
+    height: 80,
+  },
+  showLabel: false,
 };
