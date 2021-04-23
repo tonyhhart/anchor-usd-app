@@ -1,9 +1,0 @@
-{
-  "type": "project",
-  "description": "Trade, Send, Earn on Stocks and Crypto.",
-  "keywords": [],
-  "license": "MIT",
-  "require": {
-    "php": "^8.0"
-  }
-}
