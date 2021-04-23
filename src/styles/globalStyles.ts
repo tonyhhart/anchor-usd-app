@@ -43,6 +43,7 @@ export default StyleSheet.create({
   },
   cardDisabled: {
     elevation: 0,
+    borderRadius: 0,
   },
   avatar: {
     alignSelf: 'center',

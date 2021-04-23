@@ -119,7 +119,9 @@ export default function ExploreScreen() {
   }
 
   function renderListHeaderComponent() {
-    return <ListItem size="large" title={user.email} description="Verification Level 1" />;
+    return (
+      <ListItem size="large" title={user.email} description="Verification Level 1" cardDisabled />
+    );
   }
 
   function renderSectionHeader(data: { section: SectionListData<SettingsItem, SettingsSection> }) {
@@ -129,7 +131,7 @@ export default function ExploreScreen() {
   function renderListFooterComponent() {
     return (
       <View style={styles.logout}>
-        <ListItem destructive title="Log out" onPress={() => dispatch(logout())} />
+        <ListItem destructive title="Log out" onPress={() => dispatch(logout())} cardDisabled />
       </View>
     );
   }
