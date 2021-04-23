@@ -34,49 +34,42 @@ yarn start
 
 ### Login
 
-<p>
-    <img alt="login light" width="300" src="https://i.imgur.com/fOPhWjl.png">
-    <img alt="login dark" width="300" src="https://i.imgur.com/XsIVtol.png">
-</p>
+| | |
+| :---: | --- |
+| <img alt="login light" src="https://i.imgur.com/fOPhWjl.png"> | <img alt="login dark" src="https://i.imgur.com/XsIVtol.png"> |
 
 ### Register
 
-<p>
-    <img alt="login light" width="300" src="https://i.imgur.com/t45LXuJ.png">
-    <img alt="login dark" width="300" src="https://i.imgur.com/okyV0xG.png">
-</p>
+| | |
+| :---: | --- |
+| <img alt="login light" src="https://i.imgur.com/t45LXuJ.png"> | <img alt="login dark" src="https://i.imgur.com/okyV0xG.png"> |
 
 ### Home
 
-<p>
-    <img alt="login light" width="300" src="https://i.imgur.com/E5gs3gh.png">
-    <img alt="login dark" width="300" src="https://i.imgur.com/S52Zzpp.png">
-</p>
+| | |
+| :---: | --- |
+| <img alt="login light" src="https://i.imgur.com/E5gs3gh.png"> | <img alt="login dark" src="https://i.imgur.com/S52Zzpp.png"> |
 
 ### View
 
-<p>
-    <img alt="login light" width="300" src="https://i.imgur.com/66idQix.png">
-    <img alt="login dark" width="300" src="https://i.imgur.com/9aZnIri.png">
-</p>
+| | |
+| :---: | --- |
+| <img alt="login light" src="https://i.imgur.com/66idQix.png"> | <img alt="login dark" src="https://i.imgur.com/9aZnIri.png"> |
 
 ### Portifolio
 
-<p>
-    <img alt="login light" width="300" src="https://i.imgur.com/miQG271.png">
-    <img alt="login dark" width="300" src="https://i.imgur.com/eXEbgG2.png">
-</p>
+| | |
+| :---: | --- |
+| <img alt="login light" src="https://i.imgur.com/miQG271.png"> | <img alt="login dark" src="https://i.imgur.com/eXEbgG2.png"> |
 
 ### Move
 
-<p>
-    <img alt="login light" width="300" src="https://i.imgur.com/vaKT8tn.png">
-    <img alt="login dark" width="300" src="https://i.imgur.com/6mTh3mg.png">
-</p>
+| | |
+| :---: | --- |
+| <img alt="login light" src="https://i.imgur.com/vaKT8tn.png"> | <img alt="login dark" src="https://i.imgur.com/6mTh3mg.png"> |
 
 ### Settings
 
-<p>
-    <img alt="login light" width="300" src="https://i.imgur.com/nGf2Qxa.png">
-    <img alt="login dark" width="300" src="https://i.imgur.com/cMpdFwK.png">
-</p>
+| | |
+| :---: | --- |
+| <img alt="login light" src="https://i.imgur.com/nGf2Qxa.png"> | <img alt="login dark" src="https://i.imgur.com/cMpdFwK.png"> |
