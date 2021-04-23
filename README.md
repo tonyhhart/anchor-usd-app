@@ -17,6 +17,10 @@
 
 [Expo](http://expo.io) is a framework and a platform for universal React applications. It is a set of tools and services built around React Native and native platforms that help you develop, build, deploy, and quickly iterate on iOS, Android, and web apps from the same JavaScript/TypeScript codebase.
 
+## Preview
+
+View web demo at [https://anchor-usd-api.herokuapp.com/](https://anchor-usd-api.herokuapp.com/)
+
 ## Quick start
 
 ```
@@ -24,10 +28,10 @@
 npm install --global expo-cli
 
 # Install dependencies
-yarn
+expo install
 
 # Start project
-yarn start
+expo start
 ```
 
 ## Screens
