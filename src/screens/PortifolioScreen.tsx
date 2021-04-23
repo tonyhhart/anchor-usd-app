@@ -9,7 +9,7 @@ import { Text } from 'components/Themed';
 import UsdIcon from 'components/UsdIcon';
 import Colors, { tintColorLight } from 'constants/Colors';
 import Metrics from 'constants/Metrics';
-import { formatMoney } from 'services/helpers-service';
+import { formatMoney, formatPercentage } from 'services/helpers-service';
 import { RootStackParamList } from 'types';
 
 export default function PortifolioScreen() {
@@ -30,6 +30,18 @@ export default function PortifolioScreen() {
     setRefreshing(true);
     setTimeout(() => setRefreshing(false), 2000);
   }
+
+  function rightComponent() {
+    return (
+      <View style={styles.righComponent}>
+        <View>
+          <Text style={styles.price}>{formatMoney(0)} USD</Text>
+          <Text style={[styles.percentage]}>{formatPercentage(0)} USD</Text>
+        </View>
+      </View>
+    );
+  }
+
   return (
     <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
       <View style={styles.topBackground}>
@@ -43,17 +55,21 @@ export default function PortifolioScreen() {
 
       <View style={[styles.card]}>
         <ListItem
-          left={() => <IconButton color={Colors.white} icon="speedometer" style={styles.icon} />}
           title="Margin Account"
           description="Available buying power"
+          left={() => <IconButton color={Colors.white} icon="speedometer" style={styles.icon} />}
+          right={rightComponent}
+          descriptionNumberOfLines={1}
         />
       </View>
 
       <View style={[styles.card]}>
         <ListItem
-          left={() => <UsdIcon style={[styles.icon, styles.iconUsd]} />}
           title="High Yield Interest Account"
           description="Interest Rate: 7.83% APR"
+          left={() => <UsdIcon style={[styles.icon, styles.iconUsd]} />}
+          right={rightComponent}
+          descriptionNumberOfLines={1}
         />
       </View>
     </ScrollView>
@@ -94,5 +110,22 @@ const styles = StyleSheet.create({
   headerIcon: {
     backgroundColor: tintColorLight,
     marginRight: Metrics.base,
+  },
+  righComponent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+  price: {
+    fontWeight: '700',
+    fontSize: Metrics.label - 2,
+    minWidth: 90,
+    textAlign: 'right',
+    marginBottom: 2,
+  },
+  percentage: {
+    fontSize: Metrics.label - 3,
+    textAlign: 'right',
+    fontWeight: '500',
   },
 });

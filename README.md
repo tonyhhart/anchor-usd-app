@@ -63,8 +63,8 @@ yarn start
 ### Portifolio
 
 <p>
-    <img alt="login light" width="300" src="https://i.imgur.com/StyBWEV.png">
-    <img alt="login dark" width="300" src="https://i.imgur.com/nxSannF.png">
+    <img alt="login light" width="300" src="https://i.imgur.com/VfjaE8s.png">
+    <img alt="login dark" width="300" src="https://i.imgur.com/wB4StzE.png">
 </p>
 
 ### Settings
