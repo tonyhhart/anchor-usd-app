@@ -7,8 +7,8 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest --watchAll",
-    "build": "patch-package && node postinstall.js && ./node_modules/.bin/expo build:web",
-    "postinstall": "patch-package && node postinstall.js"
+    "postinstall": "patch-package && node postinstall.js",
+    "build": "./node_modules/.bin/expo build:web"
   },
   "jest": {
     "preset": "jest-expo"
