@@ -28,7 +28,7 @@ export default function PortifolioScreen() {
 
   function onRefresh() {
     setRefreshing(true);
-    setTimeout(() => setRefreshing(false), 2000);
+    setTimeout(() => setRefreshing(false), 700);
   }
 
   function rightComponent() {
