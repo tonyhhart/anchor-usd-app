@@ -26,7 +26,11 @@ export default function SettingsScreen() {
   const [refreshing, setRefreshing] = React.useState(false);
 
   React.useEffect(() => {
-    dispatch(listCoinsAsync(api_token));
+    if (data.length) {
+      onRefresh();
+    } else {
+      dispatch(listCoinsAsync(api_token));
+    }
   }, []);
 
   function onRefresh() {
@@ -59,11 +63,9 @@ export default function SettingsScreen() {
       renderItem={renderCoinItem}
       keyExtractor={keyExtractor}
       ListEmptyComponent={
-        !success ? (
-          <View style={globalStyles.loadingContainer}>
-            <ActivityIndicator size={42} />
-          </View>
-        ) : null
+        <View style={globalStyles.loadingContainer}>
+          <ActivityIndicator size={42} hidesWhenStopped animating={!success} />
+        </View>
       }
     />
   );
