@@ -41,7 +41,7 @@ export default function PortifolioScreen() {
         />
       ),
     });
-  }, []);
+  }, [colorScheme]);
 
   function renderHeader() {
     return <Text style={styles.amount}>{formatMoney(amount)}</Text>;
