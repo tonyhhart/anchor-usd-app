@@ -59,6 +59,7 @@ function CoinItem({
         description={item.name}
         descriptionStyle={styles.description}
         left={leftComponent}
+        titleNumberOfLines={1}
         descriptionNumberOfLines={1}
         right={rightComponent}
       />
