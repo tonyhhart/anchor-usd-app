@@ -1,13 +1,47 @@
-/**
- * Learn more about deep linking with React Navigation
- * https://reactnavigation.org/docs/deep-linking
- * https://reactnavigation.org/docs/configuring-links
- */
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
 
 import * as Linking from 'expo-linking';
 import { Coin } from 'store';
 
-export default {
+function getConfig(routeName, config) {
+  if (config.screens) {
+    return getConfig(routeName, config.screens);
+  }
+
+  for (const screen in config) {
+    // console.log(`Scre `, screen);
+    if (screen === routeName) return config[screen];
+  }
+
+  for (const screen in config) {
+    if (typeof config[screen] === 'object' && config[screen].screens) {
+      const r = getConfig(routeName, config[screen].screens);
+
+      if (typeof r === 'string') {
+        return r;
+      }
+    }
+  }
+
+  return false;
+}
+
+export function routeToLink(routeName) {
+  const config = getConfig(routeName, linkingConfiguration.config);
+
+  if (typeof config === 'string') {
+    return config;
+  }
+
+  if (typeof config?.path === 'string') {
+    return config.path;
+  }
+
+  return config;
+}
+
+const linkingConfiguration = {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
@@ -66,3 +100,5 @@ export default {
     },
   },
 };
+
+export default linkingConfiguration;

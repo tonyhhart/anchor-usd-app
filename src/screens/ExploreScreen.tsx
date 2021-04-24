@@ -1,21 +1,15 @@
-import * as React from 'react';
-import {
-  FlatList,
-  StyleSheet,
-  ListRenderItemInfo,
-  Pressable,
-  View,
-  RefreshControl,
-} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View, RefreshControl, Animated, Pressable } from 'react-native';
+import DraggableFlatList, { RenderItemParams } from 'react-native-draggable-flatlist';
 import { ActivityIndicator } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 
-import { useNavigation } from '@react-navigation/core';
-import { Link } from '@react-navigation/native';
+import { Link, useNavigation } from '@react-navigation/native';
 import CoinItem from 'components/CoinItem';
+import Layout from 'constants/Layout';
 import Metrics from 'constants/Metrics';
 import useReduxDispatch from 'hooks/useReduxDispatch';
-import { hapticsLight, isWeb } from 'services/helpers-service';
+import { animateNextFlatList, isWeb } from 'services/helpers-service';
 import { Coin, listCoinsAsync, selectApiToken, selectCoinState } from 'store';
 import globalStyles from 'styles/globalStyles';
 
@@ -23,42 +17,83 @@ export default function SettingsScreen() {
   const dispatch = useReduxDispatch();
   const navigation = useNavigation();
 
-  const { data, success } = useSelector(selectCoinState);
+  const { data: coinData, success } = useSelector(selectCoinState);
   const api_token = useSelector(selectApiToken);
-  const [refreshing, setRefreshing] = React.useState(false);
 
-  React.useEffect(() => {
+  const [refreshing, setRefreshing] = useState(false);
+  const [animation] = useState(new Animated.Value(0));
+  const [data, setData] = useState(coinData);
+  const [key, setKey] = useState(new Date().toString());
+
+  useEffect(() => {
     if (data.length) {
       onRefresh();
     } else {
-      dispatch(listCoinsAsync(api_token));
+      dispatch(listCoinsAsync(api_token))
+        .then(setData)
+        .finally(() => {
+          setKey(new Date().toString());
+        });
     }
   }, []);
 
   function onRefresh() {
     setRefreshing(true);
-    dispatch(listCoinsAsync(api_token)).finally(() => setRefreshing(false));
+    dispatch(listCoinsAsync(api_token))
+      .then((d) => {
+        animateNextFlatList();
+        setData(d);
+      })
+      .finally(() => {
+        setRefreshing(false);
+        setKey(new Date().toString());
+      });
   }
 
-  function renderCoinItem({ item }: ListRenderItemInfo<Coin>) {
-    function navigateToViewCoinScreen() {
-      navigation.navigate('ViewCoin', { coin: item });
-      hapticsLight();
-    }
+  function onDragBegin() {
+    Animated.spring(animation, {
+      toValue: 1,
+      speed: 100,
+      useNativeDriver: true,
+    }).start();
+  }
+
+  function onRelease() {
+    Animated.spring(animation, {
+      toValue: 0,
+      useNativeDriver: true,
+    }).start();
+  }
+
+  function renderCoinItem({ item, drag, isActive }: RenderItemParams<Coin>) {
+    const animatedStyle = {
+      transform: [
+        {
+          scale: animation.interpolate({
+            inputRange: [0, 1],
+            outputRange: [1, isActive ? 1.06 : 1],
+          }),
+        },
+      ],
+      width: Layout.window.width,
+      position: 'relative',
+    };
 
     if (isWeb()) {
       return (
-        <Link to={`/coins/${item.id}`}>
-          <View style={globalStyles.link}>
+        <Link onLongPress={drag} to={`/coins/${item.id}`}>
+          <Animated.View style={animatedStyle}>
             <CoinItem item={item} />
-          </View>
+          </Animated.View>
         </Link>
       );
     }
 
     return (
-      <Pressable onPress={navigateToViewCoinScreen}>
-        <CoinItem item={item} />
+      <Pressable onLongPress={drag} onPress={() => navigation.navigate('ViewCoin', { coin: item })}>
+        <Animated.View style={animatedStyle}>
+          <CoinItem item={item} />
+        </Animated.View>
       </Pressable>
     );
   }
@@ -68,7 +103,7 @@ export default function SettingsScreen() {
   }
 
   return (
-    <FlatList
+    <DraggableFlatList
       refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       contentContainerStyle={styles.list}
       data={data}
@@ -79,6 +114,10 @@ export default function SettingsScreen() {
           <ActivityIndicator size={42} hidesWhenStopped animating={!success} />
         </View>
       }
+      onDragEnd={({ data }) => setData(data)}
+      onDragBegin={onDragBegin}
+      onRelease={onRelease}
+      layoutInvalidationKey={key}
     />
   );
 }

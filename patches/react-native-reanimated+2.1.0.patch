@@ -1,0 +1,25 @@
+diff --git a/node_modules/react-native-reanimated/src/createAnimatedComponent.js b/node_modules/react-native-reanimated/src/createAnimatedComponent.js
+index ecfb830..ec418d7 100644
+--- a/node_modules/react-native-reanimated/src/createAnimatedComponent.js
++++ b/node_modules/react-native-reanimated/src/createAnimatedComponent.js
+@@ -345,13 +345,13 @@ export default function createAnimatedComponent(Component) {
+         // TODO: Delete this after React Native also deletes this deprecation helper.
+         if (ref != null && ref.getNode == null) {
+           ref.getNode = () => {
+-            console.warn(
+-              '%s: Calling %s on the ref of an Animated component ' +
+-                'is no longer necessary. You can now directly use the ref ' +
+-                'instead. This method will be removed in a future release.',
+-              ref.constructor.name ?? '<<anonymous>>',
+-              'getNode()'
+-            );
++            // console.warn(
++            //   '%s: Calling %s on the ref of an Animated component ' +
++            //     'is no longer necessary. You can now directly use the ref ' +
++            //     'instead. This method will be removed in a future release.',
++            //   ref.constructor.name ?? '<<anonymous>>',
++            //   'getNode()'
++            // );
+             return ref;
+           };
+         }

@@ -1,8 +1,20 @@
-import { Linking, Platform } from 'react-native';
+import { Linking, Platform, LayoutAnimation } from 'react-native';
 
 import { API_ENDPOINT } from '@env';
 import * as Haptics from 'expo-haptics';
 import * as WebBrowser from 'expo-web-browser';
+
+export function animateNext(): void {
+  LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+}
+
+export function animateNextSpring(): void {
+  LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+}
+
+export function animateNextFlatList(): void {
+  LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+}
 
 export const isWeb = (): boolean => Platform.OS === 'web';
 export const isIOS = (): boolean => Platform.OS === 'ios';

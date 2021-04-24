@@ -54,7 +54,9 @@ export const {
   get_coin_error,
 } = coinsSlice.actions;
 
-export const listCoinsAsync = (api_token: string) => (dispatch: StoreDispatch) => {
+export const listCoinsAsync = (
+  api_token: string
+): ThunkAction<Promise<Coin[]>, any, any, AnyAction> => (dispatch) => {
   dispatch(list_coins());
 
   return new Promise((resolve, reject) => {
