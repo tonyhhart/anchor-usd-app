@@ -1,8 +1,8 @@
-import { AnyAction, createSlice, ThunkAction, ThunkDispatch } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
 import api, { getErrorMessage } from 'services/api-service';
 
-import { StoreState, StoreDispatch, AppThunk } from '.';
+import { StoreState, AppThunk } from '.';
 
 export const coinsSlice = createSlice<CoinsState, CoinsReducers>({
   name: 'coins',
@@ -54,9 +54,7 @@ export const {
   get_coin_error,
 } = coinsSlice.actions;
 
-export const listCoinsAsync = (
-  api_token: string
-): ThunkAction<Promise<Coin[]>, any, any, AnyAction> => (dispatch) => {
+export const listCoinsAsync = (api_token: string): AppThunk<Promise<Coin[]>> => (dispatch) => {
   dispatch(list_coins());
 
   return new Promise((resolve, reject) => {
@@ -73,18 +71,11 @@ export const listCoinsAsync = (
   });
 };
 
-// export type ThunkAction<
-//   R, // Return type of the thunk function
-//   S, // state type used by getState
-//   E, // any "extra argument" injected into the thunk
-//   A extends Action // known types of actions that can be dispatched
-// > = (dispatch: ThunkDispatch<S, E, A>, getState: () => S, extraArgument: E) => R;
-
 export const getCoinAsync = (
   api_token: string,
   coin: Coin,
   period: string
-): ThunkAction<Promise<Coin>, any, any, AnyAction> => (dispatch) => {
+): AppThunk<Promise<Coin>> => (dispatch) => {
   dispatch(get_coin());
   return new Promise((resolve, reject) => {
     api(api_token)

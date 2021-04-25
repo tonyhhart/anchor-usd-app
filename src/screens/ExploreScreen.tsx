@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, RefreshControl, Animated, Pressable } from 'react-native';
-import DraggableFlatList, { RenderItemParams } from 'react-native-draggable-flatlist';
+import DraggableFlatList, {
+  DragEndParams,
+  RenderItemParams,
+} from 'react-native-draggable-flatlist';
 import { ActivityIndicator } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 
@@ -10,7 +13,7 @@ import Layout from 'constants/Layout';
 import Metrics from 'constants/Metrics';
 import useReduxDispatch from 'hooks/useReduxDispatch';
 import { animateNextFlatList, isWeb } from 'services/helpers-service';
-import { Coin, listCoinsAsync, selectApiToken, selectCoinState } from 'store';
+import { Coin, listCoinsAsync, selectApiToken, selectCoinState, updateUserInfoAsync } from 'store';
 import globalStyles from 'styles/globalStyles';
 
 export default function SettingsScreen() {
@@ -65,6 +68,12 @@ export default function SettingsScreen() {
     }).start();
   }
 
+  function onDragEnd({ data: reorderedData }: DragEndParams<Coin>) {
+    setData(reorderedData);
+
+    dispatch(updateUserInfoAsync(api_token, { coins_order: reorderedData.map((c) => c.id) }));
+  }
+
   function renderCoinItem({ item, drag, isActive }: RenderItemParams<Coin>) {
     const animatedStyle = {
       transform: [
@@ -114,7 +123,7 @@ export default function SettingsScreen() {
           <ActivityIndicator size={42} hidesWhenStopped animating={!success} />
         </View>
       }
-      onDragEnd={({ data }) => setData(data)}
+      onDragEnd={onDragEnd}
       onDragBegin={onDragBegin}
       onRelease={onRelease}
       layoutInvalidationKey={key}
