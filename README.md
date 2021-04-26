@@ -40,7 +40,7 @@ expo start
 
 | | |
 | :---: | --- |
-| <img alt="login light" src="https://i.imgur.com/Q85RRIC.png"> | <img alt="login dark" src="https://i.imgur.com/7gB17rG.png"> |
+| <img alt="login light" src="https://i.imgur.com/fOPhWjl.png"> | <img alt="login dark" src="https://i.imgur.com/XsIVtol.png"> |
 
 ### Register
 
@@ -52,7 +52,7 @@ expo start
 
 | | |
 | :---: | --- |
-| <img alt="login light" src="https://i.imgur.com/E5gs3gh.png"> | <img alt="login dark" src="https://i.imgur.com/S52Zzpp.png"> |
+| <img alt="login light" src="https://i.imgur.com/Q85RRIC.png"> | <img alt="login dark" src="https://i.imgur.com/7gB17rG.png"> |
 
 ### View
 
