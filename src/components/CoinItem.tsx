@@ -11,16 +11,23 @@ import globalStyles from 'styles/globalStyles';
 import { Surface, Text } from './Themed';
 
 function CoinItem({
+  left,
   item,
   content,
   showGraphImage,
 }: {
+  left?: React.ReactElement;
   item: Coin;
   content?: React.ReactElement;
   showGraphImage?: boolean;
 }) {
   function leftComponent() {
-    return <Avatar.Image style={globalStyles.avatar} size={40} source={{ uri: item.image_url }} />;
+    return (
+      <>
+        {left}
+        <Avatar.Image style={globalStyles.avatar} size={40} source={{ uri: item.image_url }} />
+      </>
+    );
   }
 
   function rightComponent() {
@@ -70,6 +77,7 @@ function CoinItem({
 }
 
 CoinItem.defaultProps = {
+  left: undefined,
   showGraphImage: true,
   content: undefined,
 };

@@ -4,13 +4,16 @@ import DraggableFlatList, {
   DragEndParams,
   RenderItemParams,
 } from 'react-native-draggable-flatlist';
-import { ActivityIndicator } from 'react-native-paper';
+import { ActivityIndicator, IconButton, List } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 
+import { Ionicons } from '@expo/vector-icons';
 import { Link, useNavigation } from '@react-navigation/native';
 import CoinItem from 'components/CoinItem';
+import Colors from 'constants/Colors';
 import Layout from 'constants/Layout';
 import Metrics from 'constants/Metrics';
+import useColorScheme from 'hooks/useColorScheme';
 import useReduxDispatch from 'hooks/useReduxDispatch';
 import { animateNextFlatList, isWeb } from 'services/helpers-service';
 import { Coin, listCoinsAsync, selectApiToken, selectCoinState, updateUserInfoAsync } from 'store';
@@ -19,11 +22,13 @@ import globalStyles from 'styles/globalStyles';
 export default function SettingsScreen() {
   const dispatch = useReduxDispatch();
   const navigation = useNavigation();
+  const colorScheme = useColorScheme();
 
   const { data: coinData, success } = useSelector(selectCoinState);
   const api_token = useSelector(selectApiToken);
 
   const [refreshing, setRefreshing] = useState(false);
+  const [dragEnabled, setDragEnabled] = useState(false);
   const [animation] = useState(new Animated.Value(0));
   const [data, setData] = useState(coinData);
   const [key, setKey] = useState(new Date().toString());
@@ -53,6 +58,12 @@ export default function SettingsScreen() {
       });
   }
 
+  function toggleOnDrag() {
+    animateNextFlatList();
+
+    setDragEnabled(!dragEnabled);
+  }
+
   function onDragBegin() {
     Animated.spring(animation, {
       toValue: 1,
@@ -74,6 +85,19 @@ export default function SettingsScreen() {
     dispatch(updateUserInfoAsync(api_token, { coins_order: reorderedData.map((c) => c.id) }));
   }
 
+  function renderListHeaderComponent() {
+    return (
+      <List.Item
+        title="Watchlist"
+        right={({ style, color }) => (
+          <Pressable onPress={toggleOnDrag} style={style}>
+            <Ionicons name="list" size={28} color={color} />
+          </Pressable>
+        )}
+      />
+    );
+  }
+
   function renderCoinItem({ item, drag, isActive }: RenderItemParams<Coin>) {
     const animatedStyle = {
       transform: [
@@ -91,7 +115,7 @@ export default function SettingsScreen() {
     if (isWeb()) {
       return (
         <Link onLongPress={drag} to={`/coins/${item.id}`}>
-          <Animated.View style={animatedStyle}>
+          <Animated.View style={globalStyles.link}>
             <CoinItem item={item} />
           </Animated.View>
         </Link>
@@ -101,7 +125,18 @@ export default function SettingsScreen() {
     return (
       <Pressable onLongPress={drag} onPress={() => navigation.navigate('ViewCoin', { coin: item })}>
         <Animated.View style={animatedStyle}>
-          <CoinItem item={item} />
+          <CoinItem
+            left={
+              dragEnabled ? (
+                <IconButton
+                  icon="drag-horizontal-variant"
+                  color={Colors[colorScheme].text}
+                  size={28}
+                />
+              ) : undefined
+            }
+            item={item}
+          />
         </Animated.View>
       </Pressable>
     );
@@ -118,6 +153,7 @@ export default function SettingsScreen() {
       data={data}
       renderItem={renderCoinItem}
       keyExtractor={keyExtractor}
+      ListHeaderComponent={renderListHeaderComponent}
       ListEmptyComponent={
         <View style={globalStyles.loadingContainer}>
           <ActivityIndicator size={42} hidesWhenStopped animating={!success} />
