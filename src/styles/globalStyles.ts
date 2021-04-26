@@ -73,7 +73,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   tint: { color: tintColorLight },
-  link: { width: '100%', backgroundColor: 'red' },
+  link: { width: '100%' },
 });
 
 export const headerStyle: StackNavigationOptions = {
